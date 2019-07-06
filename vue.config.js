@@ -4,7 +4,7 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "./api":{
+            "/api":{
                 target:"https://bbs.youxiake.com",
                 changOrigin:true
             }
