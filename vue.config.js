@@ -4,8 +4,8 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "./api":{
-                target:"https://bbs.youxiake.com",
+            "/api":{
+                target:"https://m.youxiake.com",
                 changOrigin:true
             }
         }
@@ -20,7 +20,9 @@ module.exports = {
                 "store":path.resolve(__dirname,"./src/store"),
                 "utils":path.resolve(__dirname,"./src/utils"),
                 "views":path.resolve(__dirname,"./src/views"),
-                "api":path.resolve(__dirname,"./src/api")
+                "api":path.resolve(__dirname,"./src/api"),
+                "assets":path.resolve(__dirname,"./src/assets")
+
             }
             
         }
