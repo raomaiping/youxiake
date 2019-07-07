@@ -15,7 +15,7 @@ export default new Router({
     order,
     personalCenter,
     around,
-    localhost
+    localhost,
     circle
   ]
 })
