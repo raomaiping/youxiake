@@ -5,6 +5,8 @@ Vue.use(Router)
 import home from "./home";
 import order from "./order"
 import personalCenter from "./personalCenter";
+import around from "./around";
+import localhost from "./localhost";
 import circle from "./circle"
 
 export default new Router({
@@ -12,6 +14,8 @@ export default new Router({
     home,
     order,
     personalCenter,
+    around,
+    localhost
     circle
   ]
 })
