@@ -5,13 +5,18 @@ Vue.use(Router)
 import home from "./home";
 import order from "./order"
 import personalCenter from "./personalCenter";
-import circle from "./circle"
+import circle from "./circle";
+import cityCircle from "./cityCircle";
+import destination from "./destination"
 
 export default new Router({
   routes: [
     home,
     order,
     personalCenter,
-    circle
+    circle,
+    cityCircle,
+    destination,
+
   ]
 })

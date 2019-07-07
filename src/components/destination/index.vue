@@ -1,12 +1,12 @@
 <template>
     <div>
-        目的地
+        <HeaderCom/>
     </div>
 </template>
 
 <script>
 export default {
-
+    name:"destination",
 }
 </script>
 
