@@ -11,7 +11,11 @@
                     <span>兴趣圈</span>
                 </router-link>
             </ul>
+                <keep-alive include="cityBody,InterestCircle">
+
            <router-view></router-view>
+                </keep-alive>
+
         </div>
 
 
@@ -19,12 +23,8 @@
 </template>
 
 <script>
-import CityBody from "components/cityBody"
 export default {
     name:"CircleQz",
-    components:{
-        CityBody
-    }
 }
 </script>
 
