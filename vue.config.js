@@ -5,7 +5,7 @@ module.exports = {
         open:true,
         proxy:{
             "/api":{
-                target:"https://m.youxiake.com",
+                target:"https://bbs.youxiake.com",
                 changOrigin:true
             }
         }
