@@ -7,6 +7,7 @@ import order from "./order"
 import personalCenter from "./personalCenter";
 import around from "./around";
 import localhost from "./localhost";
+import circle from "./circle"
 
 export default new Router({
   routes: [
@@ -15,5 +16,6 @@ export default new Router({
     personalCenter,
     around,
     localhost
+    circle
   ]
 })
