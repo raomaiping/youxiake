@@ -6,15 +6,15 @@
             <Header :title="title"></Header>
             <div class="v-container">
                 <!-- 轮播图 -->
-                <Swiper/>
+                <Swiper :slide_show="slide_show"/>
                 <!-- 活动指南 -->
-                <LocalSportpoint/>
+                <LocalSportpoint :sportPoint="sportPoint"/>
 
                     <!-- 国内玩乐 -->
-                <Inplay/>
+                <Inplay :Itheme_tag="Itheme_tag" :Itheme_lines="Itheme_lines" :Iblock_name="Iblock_name"/>
                 
                 <!-- 出境游 -->
-                <Outplay/>
+                <Outplay :theme_tag="theme_tag" :theme_lines="theme_lines" :block_name="block_name"/>
             </div>
         </div>
 </template>
@@ -25,6 +25,8 @@ import LocalSportpoint from "components/localhost/localSportpoint";
 import Inplay from "components/localhost/Inplay";
 import Outplay from "components/localhost/outplay";
 import Swiper from "components/localhost/swiper"
+
+import {getlocalSport} from "api/localhost";
 export default {
     name:"localhost",
     components:{
@@ -41,9 +43,27 @@ export default {
             required:true
         }
     },
+    async created(){
+        let sportPoint = await getlocalSport();
+        this.sportPoint = sportPoint.data.class;
+        this.theme_tag = sportPoint.data.en_lines.lines.theme_tag;
+        this.theme_lines = sportPoint.data.en_lines.lines.theme_lines;
+        this.block_name  = sportPoint.data.en_lines.block.block_name;
+        this.Itheme_tag = sportPoint.data.cn_lines.lines.theme_tag;
+        this.Itheme_lines = sportPoint.data.cn_lines.lines.theme_lines;
+        this.Iblock_name = sportPoint.data.cn_lines.block.block_name;
+        this.slide_show = sportPoint.data.slide_show;
+    },
     data(){
         return{
-
+            sportPoint:[],
+            theme_tag:[],
+            theme_lines:[],
+            block_name:"",
+            Itheme_tag:[],
+            Itheme_lines:[],
+            Iblock_name:"",
+            slide_show:[]
         }
     }
 }

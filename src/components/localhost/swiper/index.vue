@@ -17,17 +17,17 @@
 <script>
 import "swiper/dist/css/swiper.css"
 import Swiper from "swiper"
-import {getlocalSport} from "api/localhost";
 export default {
     name:"swiper",
-    async created(){
-        let swiper = await getlocalSport();
-        this.slide_show = swiper.data.slide_show;
-        
+    props:{
+        slide_show:{
+            type:Array,
+            default:[],
+            required:true
+        }
     },
     data(){
         return{
-            slide_show:[]
         }
     },
     updated(){
