@@ -2,7 +2,7 @@
   <div>
     <HeaderCom />
     <div class="u-banner">
-      <img src="../../assets/u-banner02.jpeg" alt />
+      <img src="../../assets/u-banner02.jpeg" alt="111" />
     </div>
 
     <div class="list-img">
