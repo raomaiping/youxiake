@@ -4,10 +4,25 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "./api":{
-                target:"https://bbs.youxiake.com",
+            "/abc":{
+                target:"https://m.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/abc" : ""
+                }
+            },
+            "/visas":{
+                target:"https://m.youxiake.com",
                 changOrigin:true
-            }
+            },
+            "/h5":{
+                target:"https://h5.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/h5" : ""
+                }
+            },
+
         }
     },
     configureWebpack:{
