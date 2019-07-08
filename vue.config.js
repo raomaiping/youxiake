@@ -22,7 +22,7 @@ module.exports = {
 
         }
     },
-    configureWebpack:{
+    configugreWebpack:{
         resolve:{
             alias: {
                 "@":path.resolve(__dirname,"./src/"),
