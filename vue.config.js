@@ -5,6 +5,11 @@ module.exports = {
         open:true,
         proxy:{
 
+            "/visas":{
+                target:"https://m.youxiake.com",
+                changOrigin:true
+            },
+
             "/h5":{
                 target:"https://h5.youxiake.com",
                 changOrigin:true,
