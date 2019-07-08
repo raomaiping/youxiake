@@ -4,22 +4,40 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "/abc":{
-                target:"https://bbs.youxiake.com",
+
+            "/visas":{
+                target:"https://m.youxiake.com",
+                changOrigin:true
+            },
+
+            "/h5":{
+                target:"https://h5.youxiake.com",
                 changOrigin:true,
+                pathRewrite:{
+                    "^/h5":""
+                },
+            },
+            "/abc":{
+                target:"https://m.youxiake.com",
+              changOrigin:true,
                 pathRewrite:{
                     "^/abc":""
                 }
             },
-           "/h5":{
-                    //域名
-                target:"https://m.youxiake.com",
-                changeOrigin:true,
+            "/lai":{
+                target:"https://bbs.youxiake.com",
+                changOrigin:true,
                 pathRewrite:{
-                    "^/h5":""
+                    "^/lai":""
+                }
+            },
+            "/web":{
+                target:"http://www.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/web":""
                 }
             }
-
         }
     },
     configugreWebpack:{

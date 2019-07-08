@@ -4,7 +4,6 @@
                 <h2>主题旅游</h2>
                 <ul class="v-around-listall v-around-main-list">
                     <li v-for="(item,index) in theme_tag" :key="index" @click="handleclick(index)" :class="status==index?'active':'' ">{{item.block_alias}}</li>
-                    
                 </ul>
                 <ul class="v-locationList">
                     <li v-for="(item,index) in theme_lines" :key="index">
@@ -30,18 +29,24 @@
             </div>
 </template>
 <script>
-import {getAroundMessage} from "api/around";
 export default {
     name:"maintitle",
-    async created(){
-        let aroundData = await getAroundMessage();
-        this.theme_lines = aroundData.data.theme_lines.lines.theme_lines;
-        this.theme_tag = aroundData.data.theme_lines.lines.theme_tag;
+    props:{
+        theme_lines:{
+
+            type:Array,
+            default:[],
+            required:true
+        },
+        theme_tag:{
+            
+            type:Array,
+            default:[],
+            required:true
+        }
     },
     data(){
         return {
-            theme_lines:[],
-            theme_tag:[],
             status:''
         }
     },
