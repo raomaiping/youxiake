@@ -14,9 +14,12 @@
 import {getlocalSport} from "api/localhost";
 export default {
     name:"localSportpoint",
-    async created(){
-        let sportPoint = await getlocalSport();
-        this.sportPoint = sportPoint.data.class;
+    props:{
+        sportPoint:{
+            type:Array,
+            default:[],
+            required:true
+        }
     },
     data(){
         return{

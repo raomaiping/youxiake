@@ -2,13 +2,13 @@
          <div id="v-around">
              <Header :title="title"></Header>
         <div class="v-container">
-            <Banner/>
+            <Banner :lines="lines"/>
             <!-- 活动日历 -->
             <div class="v-datetable">
                 <a href=""></a>
             </div>
-            <Gooutnumber/>
-           <Maintitle/>
+            <Gooutnumber :Gtheme_lines="Gtheme_lines" :Gtheme_tag="Gtheme_tag"/>
+           <Maintitle :theme_lines="theme_lines" :theme_tag="theme_tag" />
         </div>
     </div>
 </template>
@@ -18,6 +18,7 @@ import Banner from "components/around/banner";
 import Gooutnumber from "components/around/gooutnumber";
 import Maintitle from "components/around/maintitle";
 
+import {getAroundMessage} from "api/around";
 export default {
     name:"around",
     components:{
@@ -26,9 +27,23 @@ export default {
         Gooutnumber,
         Maintitle
     },
+    async created(){
+        let aroundData = await getAroundMessage();
+        this.theme_lines = aroundData.data.theme_lines.lines.theme_lines;
+        this.theme_tag = aroundData.data.theme_lines.lines.theme_tag;
+         this.Gtheme_lines = aroundData.data.days.lines.theme_lines;
+        this.Gtheme_tag = aroundData.data.days.lines.theme_tag;
+        this.lines = aroundData.data.hot_lines.lines;
+        
+    },
     data(){
         return{
-            title:"周边游"
+            title:"周边游",
+            theme_lines:[],
+            theme_tag:[],
+             Gtheme_lines:[],
+            Gtheme_tag:[],
+            lines:[],
         }
     }
 }

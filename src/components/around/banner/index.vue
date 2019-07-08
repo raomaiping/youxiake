@@ -25,17 +25,18 @@
             </div>
 </template>
 <script>
-import {getAroundMessage} from "api/around";
+
 export default {
     name:"banner",
-    async created(){
-        let lines = await getAroundMessage();
-        this.lines = lines.data.hot_lines.lines;
+    props:{
+        lines:{
+            type:Array,
+            default:[],
+            required:true
+        }
     },
     data(){
         return {
-            lines:[],
-            dayNumber:['户外游','深度游','休闲游','自由行','海岛游','漂流潮溪'],
             status:''
         }
     },
