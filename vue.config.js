@@ -4,24 +4,39 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "/abc":{
-                target:"https://m.youxiake.com",
-                changOrigin:true,
-                pathRewrite:{
-                    "^/abc" : ""
-                }
-            },
+
             "/visas":{
                 target:"https://m.youxiake.com",
                 changOrigin:true
             },
+
             "/h5":{
                 target:"https://h5.youxiake.com",
                 changOrigin:true,
                 pathRewrite:{
-                    "^/h5" : ""
+                    "^/h5":""
+                },
+            },
+            "/abc":{
+                target:"https://m.youxiake.com",
+              changOrigin:true,
+                pathRewrite:{
+                    "^/abc":""
                 }
             },
+            "/lai":{
+                target:"https://bbs.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/lai":""
+                }
+            },
+            "/web":{
+                target:"http://www.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/web":""
+                }
 
         }
     },
@@ -35,7 +50,8 @@ module.exports = {
                 "store":path.resolve(__dirname,"./src/store"),
                 "utils":path.resolve(__dirname,"./src/utils"),
                 "views":path.resolve(__dirname,"./src/views"),
-                "api":path.resolve(__dirname,"./src/api")
+                "api":path.resolve(__dirname,"./src/api"),
+                "assets":path.resolve(__dirname,"./src/assets")
             }
             
         }
