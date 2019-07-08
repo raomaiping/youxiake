@@ -1,15 +1,15 @@
 <template>
     <!-- 国内玩乐 -->
         <div class=" v-around-titleall">
-            <h2>{{block_name}}</h2>
+            <h2>{{Iblock_name}}</h2>
             <ul class="v-around-listall">
-                <li v-for="(item,index) in theme_tag" :key="index" @click.stop="handleClick(index)" :class="status==index?'active':''">
+                <li v-for="(item,index) in Itheme_tag" :key="index" @click.stop="handleClick(index)" :class="status==index?'active':''">
                     <a href="javascript:;">{{item.block_alias}}</a>
                 </li>
                 
             </ul>
             <ul class="v-locationList">
-                <li v-for="(item,index) in theme_lines" :key="index">
+                <li v-for="(item,index) in Itheme_lines" :key="index">
                     <a href="">
                         <span class="v-locationListTab">{{item.class_type_name}} | {{item.jihe}}</span>
                         <img class="v-locationListImg" :src="item.img">
@@ -37,17 +37,25 @@ import {getlocalSport} from "api/localhost";
 
 export default {
     name:"Inplay",
-    async created(){
-        let Inplay = await getlocalSport();
-        this.theme_tag = Inplay.data.cn_lines.lines.theme_tag;
-        this.theme_lines = Inplay.data.cn_lines.lines.theme_lines;
-        this.block_name = Inplay.data.cn_lines.block.block_name;
+    props:{
+        Itheme_tag:{
+            type:Array,
+            default:[],
+            required:true
+        },
+        Itheme_lines:{
+            type:Array,
+            default:[],
+            required:true
+        },
+        Iblock_name:{
+            type:String,
+            default:'',
+            required:true
+        }
     },
     data(){
         return{
-            theme_tag:[],
-            theme_lines:[],
-            block_name:"",
             status:''
         }
     },

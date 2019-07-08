@@ -10,6 +10,8 @@ import cityCircle from "./cityCircle";
 import destination from "./destination"
 import around from "./around";
 import localhost from "./localhost";
+import competition from "./competition";
+import photo from "./photo";
 import travels from "./travels";
 import theme from "./theme";
 
@@ -23,6 +25,8 @@ export default new Router({
     destination,
     around,
     localhost,
+    competition,
+    photo,
     travels,
     theme
   ]
