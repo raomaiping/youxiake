@@ -4,9 +4,27 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "/api":{
-                target:"https://bbs.youxiake.com",
-                changOrigin:true
+
+            "/h5":{
+                target:"https://h5.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/h5":""
+                },
+            },
+            "/abc":{
+                target:"https://m.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/abc":""
+                }
+            },
+            "/web":{
+                target:"http://www.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/web":""
+                }
             }
         }
     },

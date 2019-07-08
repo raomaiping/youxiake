@@ -32,20 +32,29 @@
 </template>
 
 <script>
-import {getlocalSport} from "api/localhost";
 export default {
     name:"outplay",
-    async created(){
-        let outplay = await getlocalSport();
-        this.theme_tag = outplay.data.en_lines.lines.theme_tag;
-        this.theme_lines = outplay.data.en_lines.lines.theme_lines;
-        this.block_name  = outplay.data.en_lines.block.block_name;
+    props:{
+        theme_tag:{
+            type:Array,
+            default:[],
+            required:true
+        },
+        theme_lines:{
+            type:Array,
+            default:[],
+            required:true
+        },
+
+        block_name:{
+            type:String,
+            default:'',
+            required:true
+        }
     },
     data(){
+
         return{
-            theme_tag:[],
-            theme_lines:[],
-            block_name:"",
             status:''
         }
     },

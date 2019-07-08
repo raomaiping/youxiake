@@ -6,10 +6,10 @@
 // https://m.youxiake.com/api/channel/around?site_code=17
 import http from "utils/http.js"
 
- export const getAroundMessage = ()=>http("get","/api/channel/around",{site_code:17})
+ export const getAroundMessage = ()=>http("get","/abc/api/channel/around",{site_code:17})
 
 
-export const getAroundMessage1 = ()=>http("get","/api/search",{
+export const getAroundMessage1 = ()=>http("get","/abc/api/search",{
     source_id:202,
     class_id:0,
     class_type:'',
@@ -22,7 +22,7 @@ export const getAroundMessage1 = ()=>http("get","/api/search",{
     page:1
 })
 
-export const getAroundMessage2 = ()=>http("get","/api/search",{
+export const getAroundMessage2 = ()=>http("get","/abc/api/search",{
     source_id:202,
     class_id:0,
     class_type:'',
