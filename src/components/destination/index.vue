@@ -6,35 +6,16 @@
 			<div class="u-hot-title">当季热门</div>
 			<div class="u-hot-warp">
 				<ul class="u-hot-month">
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
-					<li>1月</li>
+					<li v-for="(item,index) in tabName" :key="index">{{item.tabName}}</li>
 				</ul>
 			</div>
 
 			<div class="u-mScoller">
 				<ul class="u_article_list">
-					<li>
+					<li v-for="(item,index) in mddName" :key="index">
 						<div class="u-pic">
-							<div class="u-tag">德天瀑布</div>
-							<img src="">
-						</div>
-					</li>
-					<li>
-						<div class="u-pic">
-							<div class="u-tag">德天瀑布</div>
-							<img src="">
-						</div>
-					</li>
-					<li>
-						<div class="u-pic">
-							<div class="u-tag">德天瀑布</div>
-							<img src="">
+							<div class="u-tag">{{item.mddName}}</div>
+							<img :src="item.cover">
 						</div>
 					</li>
 				</ul>
@@ -47,13 +28,51 @@
 				</a>
 			</div>
 		</div>
+
+
+        <div class="u-hot">
+			<div class="u-hot-title">主题推荐</div>
+			<div class="u-hot-warp">
+				<ul class="u-hot-month">
+					<li v-for="(item,index) in isActive" :key="index">
+                        {{item.tabName}}
+                    </li>
+				</ul>
+			</div>
+			<div class="u-mcoller">
+				<ul>
+					<li v-for="(item,index) in listName" :key="index">
+						<div class="u-pic-2"><img :src="item.cover">
+						</div>
+						<div class="u-tag-2">{{item.mddName}}</div>
+					</li>
+				</ul>
+			</div>
+		</div>
     </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll';
+import {month} from "api/circle";
+import {themeList} from "api/circle";
 export default {
     name:"destination",
+    async created() {
+    let data = await month();
+    let list = await themeList();
+    this.mddName =data.data.mddData;
+    this.tabName = data.data.tabs;
+    this.isActive =list.data.tabs;
+    this.listName = list.data.mddData;    
+    },
+    data() {
+    return {
+      mddName:[],
+      tabName:[],
+      listName:[],
+      isActive:[]
+    };
+  }
 }
 </script>
 
@@ -172,5 +191,26 @@ export default {
     position: absolute;
     right: .26rem;
     top: .28rem;
+}
+.u-mcoller ul li{
+    font-size: .3rem;
+    float: left;
+    width: 2.29rem;
+    margin-right: .11rem;
+    margin-bottom: .27rem;
+}
+.u-mcoller ul li .u-pic-2{
+    height: 1.29rem;
+    position: relative;
+}
+.u-mcoller ul li .u-tag-2{
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    color: #333;
+    font-size: .28rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 </style>
