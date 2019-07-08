@@ -14,9 +14,16 @@ module.exports = {
             },
             "/abc":{
                 target:"https://m.youxiake.com",
-                changOrigin:true,
+              changOrigin:true,
                 pathRewrite:{
                     "^/abc":""
+                }
+            },
+            "/lai":{
+                target:"https://bbs.youxiake.com",
+                changOrigin:true,
+                pathRewrite:{
+                    "^/lai":""
                 }
             },
             "/web":{
@@ -25,7 +32,7 @@ module.exports = {
                 pathRewrite:{
                     "^/web":""
                 }
-            }
+
         }
     },
     configureWebpack:{

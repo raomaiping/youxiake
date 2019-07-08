@@ -12,6 +12,8 @@ import around from "./around";
 import localhost from "./localhost";
 import competition from "./competition";
 import photo from "./photo";
+import travels from "./travels";
+import theme from "./theme";
 
 export default new Router({
   routes: [
@@ -25,5 +27,7 @@ export default new Router({
     localhost,
     competition,
     photo,
+    travels,
+    theme
   ]
 })
