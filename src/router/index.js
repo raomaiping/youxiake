@@ -17,6 +17,7 @@ import competition from "./competition";
 import photo from "./photo";
 import travels from "./travels";
 import theme from "./theme";
+import shopping from "./shopping";
 
 export default new Router({
   routes: [
@@ -34,6 +35,7 @@ export default new Router({
     competition,
     photo,
     travels,
-    theme
+    theme,
+    shopping
   ]
 })
