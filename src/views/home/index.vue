@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id ="homeIndex">
     <section id="e-content">
 		<div class="e-IndexBanner">
 			<div class="e-IndextHeaer">
@@ -53,27 +53,7 @@
 			<img src="https://qimg4.youxiake.com/upload/201907/03/89861562143301.jpg?imageslim&quot" alt="">
 
 		</div>
-		<div class="e-youhui">
-			<div class="e-youhuiHeader">
-				<i class ="youhuibox"></i>
-				<span>距离结束:</span>
-				<span class="count">20</span> : 
 
-				<span class="count">52</span> : 
-				<span class="count">00</span>  
-			</div>
-			<div class="e-youhuiContent">
-				<img src="https://gallery.youxiake.com/Public/Data/upload/productimg/201906/28/5d15c5ef20a15.jpg?imageslim" alt="">
-				<div class="e-youhuiTitle">
-					确定成行！[疯狂星期三·特惠抢购]7.6周六：品尝大鹏美食，杨梅坑海岸线休闲徒步，重走《美人鱼》拍摄地梦幻一日休闲之旅
-				</div>
-				<span>¥48</span>
-				<span>¥108</span>
-				<span>限购44个</span>
-
-			</div>
-
-		</div>
 		<div class="e-IndexLocal">
 			<div class="mIndexLocal__blank"></div>
 			<a href="#" class="mIndexLocal__img">
@@ -286,15 +266,15 @@
 <script>
 
 
+
 import {getHomeIndex} from "api/travel.js";
 import {getHomeLines} from "api/travel.js";
-import {getHuilDates} from "api/travel.js";
+
 
 export default {
 	name:"home",
 
   async	created(){
-	  console.log(getHuilDates());
 	  
 	let data  =	await getHomeIndex()
 	this.homeNav1 = data.data.navs
@@ -309,6 +289,7 @@ export default {
 			homeNav1:[],
 			homeRecom1:[],
 			homeLinesList:[]
+
 		}
 	}
 }
@@ -874,13 +855,14 @@ width: 100%;
 }
 /* 底部条 */
 .e-mBottomNav{
+	background: #fff;
 	width: 100%;
 	height: 1.1rem;
 	border-top: solid 0.04rem #ccc;
 	display: flex;
 	justify-content: space-around;
 	align-items:center;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 }
@@ -947,7 +929,13 @@ background-size: 1.42rem .31rem;
     color: #666;
     border-radius: .1rem;
     background: #f7f7f7;
-}   
+} 
+#homeIndex{
+	position:relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}  
 
 </style>
 

@@ -37,9 +37,10 @@ module.exports = {
                 pathRewrite:{
                     "^/web":""
                 }
-
+            }
         }
     },
+
     configureWebpack:{
         resolve:{
             alias: {
