@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="personalCenter">
          <div class="mUserCenter">
         <div class="mUserCenterHeader">
             <div class="header__box">
@@ -362,13 +362,14 @@ color: #333;
 }
 /* 底部条 */
 .e-mBottomNav{
+    background: #fff;   
 	width: 100%;
 	height: 1.1rem;
 	border-top: solid 0.04rem #ccc;
 	display: flex;
 	justify-content: space-around;
 	align-items:center;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 }
@@ -488,5 +489,11 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAmCAYAAACCjR
     color: #666;
     border-top: 1px solid #eee;
 }
-
+.personalCenter{
+    position:relative;
+	height: 100%;
+}
+.header__avatar img{
+    width: 1rem;
+}
 </style>
