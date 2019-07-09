@@ -20,6 +20,10 @@ import theme from "./theme";
 
 export default new Router({
   routes: [
+    {
+      path:"/",
+      redirect:"/home"
+    },
     home,
     order,
     personalCenter,
