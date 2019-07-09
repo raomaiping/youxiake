@@ -1,7 +1,6 @@
 <template>
 
     <div id="v-localhost">
-    
             <!-- 头部 -->
             <Header :title="title"></Header>
             <div class="v-container">
@@ -16,7 +15,7 @@
                 <!-- 出境游 -->
                 <Outplay :theme_tag="theme_tag" :theme_lines="theme_lines" :block_name="block_name"/>
             </div>
-        </div>
+        </div>    
 </template>
 
 <script>

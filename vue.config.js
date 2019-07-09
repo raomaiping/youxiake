@@ -42,9 +42,12 @@ module.exports = {
                     "^/web":""
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 8d59d4ef5a267a12f0c4bed47f320b06fe3fd279
+=======
+>>>>>>> 46cb11aeedfa29b8ca9a71b237b8468977e8b2be
             }
         }
     },
