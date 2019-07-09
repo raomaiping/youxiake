@@ -19,7 +19,7 @@
 			</div>
 			<div class="e-swiper1">
 				<Swiper :slide_show="imgs"/>
-				123
+			
 				<!-- <template v-slot:homeBanner ="props">
 						<div>
 
@@ -208,9 +208,6 @@
 
 
 <h1>这是分界线</h1>
-  <travelYoulun/>
-
-
 
 
 		<div class="e-IndexLine">
@@ -282,14 +279,12 @@
 import {getHomeIndex} from "api/travel.js";
 import {getHomeLines} from "api/travel.js";
 import Swiper from "components/homeBanner"
-import TravelYoulun from "components/travelYoulun"
 
 
 export default {
 	name:"home",
     components:{
 	  Swiper,
-	  TravelYoulun
 	},
 
   async	created(){
