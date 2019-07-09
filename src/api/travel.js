@@ -68,15 +68,3 @@ export const getHomeLines = ()=>http("get","/abc/api/lines",{
 
 })
 
-// 其他接口
-// http://h5.jumei.com/index/ajaxDealactList?card_id=4057&client_v=1&page=1&platform=wap&type=formal&page_key=
-
-export const getHuilDates = ()=>http("get","/index/ajaxDealactList",{
-    card_id:4057,
-    client_v:1,
-    page:1,
-    platform:"wap",
-    type:"formal",
-    page_key:''
-
-})

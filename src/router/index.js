@@ -21,6 +21,10 @@ import shopping from "./shopping";
 
 export default new Router({
   routes: [
+    {
+      path:"/",
+      redirect:"/home"
+    },
     home,
     order,
     personalCenter,
