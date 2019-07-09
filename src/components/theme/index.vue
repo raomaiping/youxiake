@@ -1,7 +1,9 @@
 <template>
   <div>
     <HeaderCom />
-    <div class="u-banner">
+     <Loading  v-if="loadingFlag"/>
+    <div v-if="!loadingFlag">
+      <div class="u-banner">
       <img src="../../assets/u-banner02.jpeg" alt="111" />
     </div>
 
@@ -19,6 +21,7 @@
       </ul>
     </div>
   </div>
+    </div>
 </template>
 
 <script>
@@ -28,13 +31,18 @@ export default {
   name: "theme",
   async created() {
     let data = await Zty();
+    if(data){
+      this.loadingFlag = false;
+    }else{
+        this.loadingFlag = true;
+    }
     this.listTitle = data.data;
-    console.log(this.listTitle);
     
   },
    data() {
     return {
-      listTitle:[]
+      listTitle:[],
+      loadingFlag:true
     };
   }
 };
