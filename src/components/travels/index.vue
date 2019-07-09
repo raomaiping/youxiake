@@ -1,7 +1,9 @@
 <template>
   <div>
     <HeaderCom />
-    <div class="u-banner">
+    <Loading  v-if="loadingFlag"/>
+    <div  v-if="!loadingFlag">
+      <div class="u-banner">
       <img src="../../assets/u-banner02.jpeg" alt />
     </div>
 
@@ -39,6 +41,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -48,11 +51,17 @@ export default {
     name:"travels",
     async created() {
     let data = await articles();
+    if(data){
+      this.loadingFlag = false;
+    }else{
+        this.loadingFlag = true;
+    }
     this.titleList = data.data.articles;
     },
     data() {
     return {
-      titleList:[]
+      titleList:[],
+      loadingFlag:true
     };
   }
 };

@@ -1,8 +1,9 @@
 <template>
     <div>
         <HeaderCom/>
-
-        <div class="u-hot">
+          <Loading  v-if="loadingFlag"/>
+        <div  v-if="!loadingFlag">
+            <div class="u-hot">
 			<div class="u-hot-title">当季热门</div>
 			<div class="u-hot-warp">
 				<ul class="u-hot-month">
@@ -49,6 +50,7 @@
 				</ul>
 			</div>
 		</div>
+        </div>
     </div>
 </template>
 
@@ -60,6 +62,11 @@ export default {
     async created() {
     let data = await month();
     let list = await themeList();
+    if(data&&list){
+      this.loadingFlag = false;
+    }else{
+        this.loadingFlag = true;
+    }
     this.mddName =data.data.mddData;
     this.tabName = data.data.tabs;
     this.isActive =list.data.tabs;
@@ -70,7 +77,8 @@ export default {
       mddName:[],
       tabName:[],
       listName:[],
-      isActive:[]
+      isActive:[],
+      loadingFlag:true
     };
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="u-qz-list">
-    <ul>
+    <Loading  v-if="loadingFlag"/>
+    <ul v-if="!loadingFlag">
       <li v-for="(item,index) in ListCity" :key="index">
         <div class="img">
           <img :src="item.cover" alt />
@@ -24,11 +25,17 @@ export default {
   name: "InterestCircle",
   async created() {
     let data = await InterestCircle();
+    if(data){
+      this.loadingFlag = false;
+    }else{
+        this.loadingFlag = true;
+    }
     this.ListCity = data.data;
   },
   data() {
     return {
-      ListCity: []
+      ListCity: [],
+      loadingFlag:true
     };
   }
 };
