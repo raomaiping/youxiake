@@ -52,7 +52,7 @@ export default {
     width: 50%;
     text-align: center;
 }
-.u-list .router-link-active span{
+.router-link-active {
     color: #444;
     border-bottom: 4px solid #ffd800;
     padding-bottom: 3px;

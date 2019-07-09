@@ -133,7 +133,8 @@ export default {
     position: absolute;
     height: 1.85rem;
     display: inline-block;
-    overflow: auto;
+    overflow-y:hidden;
+    overflow-x: auto;
     width: 100%;
     text-align: center;
     white-space: nowrap;
