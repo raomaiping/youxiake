@@ -1,3 +1,5 @@
 import Vue from "vue";
 import Header from "./u-header";
-Vue.component("HeaderCom",Header)
+import Loading from "./loading";
+Vue.component("HeaderCom",Header);
+Vue.component("Loading",Loading)
