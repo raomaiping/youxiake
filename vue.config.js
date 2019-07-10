@@ -22,7 +22,6 @@ module.exports = {
             "/abc":{
                 target:"https://m.youxiake.com",
               changOrigin:true,
-
               ws: false, 
                 pathRewrite:{
                     "^/abc":""
@@ -31,7 +30,6 @@ module.exports = {
             "/lai":{
                 target:"https://bbs.youxiake.com",
                 changOrigin:true,
-
                 ws: false, 
                 pathRewrite:{
                     "^/lai":""
