@@ -73,8 +73,7 @@ export default {
    let data = await getTravelList()
    console.log(data);
    
-    //  console.log(data.data.class);
-    // this.travelList2 =data.data.class
+    this.travelList2 =data.data.class
     },
     data(){
         return{
@@ -85,7 +84,7 @@ export default {
 }
 </script>
 
-<style scope >
+<style  >
 .mSearchResult__container{
   height: 100%;
   padding-top: 2.6rem;
@@ -264,6 +263,9 @@ margin-right: .2rem;
 .price-fh{
     font-size: .24rem;
     color: #ff7100; 
+}
+.travel_body{
+    height:12rem
 }
 .price-jg{
     font-size: .32rem;

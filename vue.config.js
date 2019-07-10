@@ -8,6 +8,7 @@ module.exports = {
                 target:"https://m.youxiake.com",
                 changOrigin:true,
                 ws: false, 
+
             },
 
             "/h5":{
@@ -21,6 +22,7 @@ module.exports = {
             "/abc":{
                 target:"https://m.youxiake.com",
               changOrigin:true,
+
               ws: false, 
                 pathRewrite:{
                     "^/abc":""
@@ -29,6 +31,7 @@ module.exports = {
             "/lai":{
                 target:"https://bbs.youxiake.com",
                 changOrigin:true,
+
                 ws: false, 
                 pathRewrite:{
                     "^/lai":""
@@ -37,6 +40,7 @@ module.exports = {
             "/web":{
                 target:"http://www.youxiake.com",
                 changOrigin:true,
+
                 ws: false, 
                 pathRewrite:{
                     "^/web":""
