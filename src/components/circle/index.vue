@@ -10,6 +10,7 @@
                 <router-link to="/circle/InterestCircle" tag="li">
                     <span>兴趣圈</span>
                 </router-link>
+              
             </ul>
                 <keep-alive include="cityBody,InterestCircle">
 
@@ -52,7 +53,7 @@ export default {
     width: 50%;
     text-align: center;
 }
-.u-list .router-link-active span{
+.router-link-active {
     color: #444;
     border-bottom: 4px solid #ffd800;
     padding-bottom: 3px;

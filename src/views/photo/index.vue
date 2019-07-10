@@ -1,12 +1,7 @@
 <template>
     <div class="v-photo">
         <!-- 头部 -->
-        <div class="v-photo-header">
-            <a href=""></a>
-            <h1>
-                <img src="http://static.youxiake.com/new/zt/images/common/logo_m.png" alt="">
-            </h1>
-        </div>
+        <HeaderCom/>
         <!-- banner -->
         <div class="v-photo-banner">
             <img src="http://gallery.youxiake.com/Public/Data/upload/201902/22/64361550823365.png" alt="">
@@ -189,13 +184,6 @@ export default {
 <style>
 body{
     background: #ededed;
-}
-.v-photo{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow-y:auto; 
-    box-sizing: border-box;
 }
 
 /* 游侠拍头部 */

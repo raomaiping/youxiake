@@ -1,8 +1,8 @@
 <template>
   <div class="u-header">
-    <span class="iconfont">&#xe646;</span>
+    <router-link class="iconfont" tag="span" to="/home">&#xe646;</router-link>
     <span class="u-logo"></span>
-    <span class="iconfont">&#xe615;</span>
+    <router-link class="iconfont" tag="span" to="/personalCenter">&#xe615;</router-link>
   </div>
 </template>
 

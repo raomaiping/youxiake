@@ -17,10 +17,14 @@ import competition from "./competition";
 import photo from "./photo";
 import travels from "./travels";
 import theme from "./theme";
-import redirect from "./redirect";
+import shopping from "./shopping";
 
 export default new Router({
   routes: [
+    {
+      path:"/",
+      redirect:"/home"
+    },
     home,
     order,
     personalCenter,
@@ -36,6 +40,6 @@ export default new Router({
     photo,
     travels,
     theme,
-    redirect
+    shopping
   ]
 })
