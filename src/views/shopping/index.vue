@@ -8,7 +8,7 @@
             <Swiper :slide_show="slide_show"/>
        
         <!-- 小标题 -->
-        <div class="v-shopping-goods-title">
+        <!-- <div class="v-shopping-goods-title">
             <i></i>
             <span>限时秒杀</span>
             <div class="v-shopping-timego">
@@ -18,13 +18,13 @@
                 <p>07</p>：
                 <p>59</p>
             </div>
-        </div>
+        </div> -->
 
         <!-- 马上抢 -->
-        <div class="v-shopping-fast">
-            <div class="v-shopping-fastbuy">
+        <!-- <div class="v-shopping-fast">
+            <div class="v-shopping-fastbuy" v-if="SecKilllist.length == 0">
                 
-                    <img class="v-shopping-fastbuy-img" :src="JSON.parse(SecKilllist[0].img_json)[0]">
+                    <img class="v-shopping-fastbuy-img" >
                     <div class="v-shopping-fastbuy-text">
                         <p>{{SecKilllist[0].goods_name}}</p>
                         <div class="v-shopping-fastbuy-price">
@@ -38,7 +38,7 @@
                     </div>
                     <a href=""></a>
             </div>
-        </div>
+        </div> -->
 
         <!-- 小标题 -->
         <div class="v-shopping-goods-title">
@@ -82,7 +82,9 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>   
+        <!-- :src="JSON.parse(SecKilllist[0].img_json)[0]" -->
+        <!-- :src="JSON.parse(goods.img_json)[0]" -->
     </div>
 </template>
 <script>
@@ -100,9 +102,11 @@ export default {
     async created(){
         let data = await getShopping();
         this.goodslist = data.taglist;  //商品
+        console.log(this.goodslist);
         this.SecKilllist = data.SecKilllist;  //限时秒杀
         this.recomlist = data.recomlist; //
         this.slide_show = data.banners
+        console.log(data);
     },
     data(){
         return {
