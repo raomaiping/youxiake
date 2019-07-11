@@ -81,6 +81,7 @@ export default {
       this.loadingFlag = true;
     }
      this.titleList = data.data.articles;
+      this.handleList(this.page)
     this.banner = list.data.articles;
 
   },
@@ -92,15 +93,27 @@ export default {
       scrollLoading: false,
       tabTitle: ["热门游记", "精华游记", "最新游记"],
       cur: 0,
-      p:1
+      p:1,
+      page:1,
+      b:1
     };
   },
   methods:{
     async  handleClick(index){
+      this.page = 1
       this.cur = index
+      this.b = index + this.p
        let data = await articles(index + this.p);
        this.titleList = data.data.articles;
-    }
+    },
+    async handleList(page){
+      
+          let data = await articles(this.b,page);
+        this.titleList = [...this.titleList,...data.data.articles];
+          this.$refs.bscroll.scroll.finishPullUp();
+          this.$refs.bscroll.scroll.refresh();
+        this.page++
+      }
   }
   ,
   mounted() {
@@ -109,6 +122,9 @@ export default {
     });
     this.$refs.bscroll.handleScrollEnd(() => {
       this.scrollLoading = false;
+    });
+    this.$refs.bscroll.handleUp(() => {
+       this.handleList(this.page)
     });
   },
   updated() {
