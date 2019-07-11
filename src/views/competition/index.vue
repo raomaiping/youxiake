@@ -8,113 +8,55 @@
         </div>
         <!-- 内容区 -->
         <div class="v-competition-container">
-            <!-- 城市活动标题 -->
-            <div class="v-competition-titleimg">
-                <img :src="this.competitionTitle[0].data.count[0]" alt="">
-            </div>
-            <!-- 城市活动 -->
-            <div class="v-competition-sports">
-                <div class="v-competition-sport" v-for="(item,index) in competitionList" :key="index">
-                    <span>{{item.data.count[0].jihedi}}</span>
-                    <img class="v-competition-sportimg" :src="item.data.count[0].image">
-                    <div class="v-competition-text">
-                        <p>{{item.data.count[0].product_name}}</p>
-                        <div class="v-competition-detial">
-                            <div class="v-competition-money">￥
-                                <span>{{item.data.count[0].price}}</span>
-                                <span>起</span>
+            <div v-for="(item,index) in sports" :key="index">
+             <!-- 城市活动标题 -->
+                <div class="v-competition-titleimg" v-if="!item.flag">
+                    <img :src="item.flag==0?item.data.count[0]:'' " alt="">
+                </div>
+                <!-- 城市活动 -->
+                <div class="v-competition-sports" v-if="item.flag">
+                    <div class="v-competition-sport">
+                        <span>{{item.data.count[0].jihedi}}</span>
+                        <img class="v-competition-sportimg" :src="item.data.count[0].image">
+                        <div class="v-competition-text">
+                            <p>{{item.data.count[0].product_name}}</p>
+                            <div class="v-competition-detial">
+                                <div class="v-competition-money"><span v-show="Number(item.data.count[0].price)">￥</span>
+                                    <span>{{item.data.count[0].price}}</span>
+                                    <span v-show="Number(item.data.count[0].price)">起</span>
+                                </div>
+                                <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
                             </div>
-                            <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- 丈量地球标题 -->
-            <div class="v-competition-titleimg">
-                <img :src="this.competitionTitle[1].data.count[0]" alt="">
-            </div>
-            <!-- 丈量地球 -->
-            <div class="v-competition-sports">
-                <div class="v-competition-sport" v-for="(item,index) in competitiondiqiu" :key="index">
-                    <span>{{item.data.count[0].jihedi}}</span>
-                    <img class="v-competition-sportimg" :src="item.data.count[0].image">
-                    <div class="v-competition-text">
-                        <p>{{item.data.count[0].product_name}}</p>
-                        <div class="v-competition-detial">
-                            <div class="v-competition-money">￥
-                                <span>{{item.data.count[0].price}}</span>
-                                <span>起</span>
-                            </div>
-                            <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 活动回顾标题 -->
-            <div class="v-competition-titleimg">
-                <img :src="this.competitionTitle[2].data.count[0]" alt="">
-            </div>
-            <!-- 活动回顾 -->
-            <div class="v-competition-sports">
-                <div class="v-competition-sport" v-for="(item,index) in competitionHuigu" :key="index">
-                    <span>{{item.data.count[0].jihedi}}</span>
-                    <img class="v-competition-sportimg" :src="item.data.count[0].image">
-                    <div class="v-competition-text">
-                        <p>{{item.data.count[0].product_name}}</p>
-                        <div class="v-competition-detial">
-                            <div class="v-competition-money">￥
-                                <span>{{item.data.count[0].price}}</span>
-                                <span>起</span>
-                            </div>
-                            <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
         </div>
     </div>
 </template>
 
 <script>
 import {getCompetition,getCompetitionList} from "api/competition"
+import { constants } from 'crypto';
 export default {
     name:"competition",
     async created(){
        let nav_info = await getCompetition();
        let competitionList = await getCompetitionList();
+       this.sports = competitionList.data.data;
+       console.log(this.sports);
         this.nav_info = nav_info.data.nav_info;
-        this.competition = competitionList.data.data;
-        for(var i = 0; i<this.competition.length;i++){
-            if(this.competition[i].flag == 0){
-                this.competitionTitle.push(this.competition[i]);
-            }else if((this.competition[i].sort >= 1) && (this.competition[i].sort <= 10) ){
-                this.competitionList.push(this.competition[i]);
-            }else if((this.competition[i].sort >= 12) && (this.competition[i].sort <= 15)){
-                this.competitiondiqiu.push(this.competition[i]);
-            }else{
-                this.competitionHuigu.push(this.competition[i]);
-            }
-        }
     },
     data(){
         return {
             nav_info:[],
-            competition:[],
-            competitionList:[],
-            competitiondiqiu:[],
-            competitionHuigu:[],
-            competitionTitle:[],
-            competitionTitleSelect:'http://img4.youxiake.com/yxk_1d5dvabhn1v3c1j37jjovni1ja92.png',
+            sports:[],
         }
     },
     methods:{
-        handleClick(index){
-            this.competitionTitleSelect = this.competitionTitle[index].data.count[0];
-        }
+        // handleClick(index){
+        //     this.competitionTitleSelect = this.competitionTitle[index].data.count[0];
+        // }
     }
 }
 </script>
@@ -226,8 +168,8 @@ export default {
     color: #f60;
     float: left;
 }
-.v-competition-money span:nth-of-type(1){
-    font-size: .45rem;
+.v-competition-money span:nth-of-type(2){
+    font-size: .35rem;
 }
 .v-competition-day{
     font-size: .28rem;

@@ -8,6 +8,7 @@ module.exports = {
                 target:"https://m.youxiake.com",
                 changOrigin:true,
                 ws: false, 
+
             },
 
             "/h5":{
@@ -37,6 +38,7 @@ module.exports = {
             "/web":{
                 target:"http://www.youxiake.com",
                 changOrigin:true,
+
                 ws: false, 
                 pathRewrite:{
                     "^/web":""
