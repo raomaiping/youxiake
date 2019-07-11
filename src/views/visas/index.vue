@@ -118,6 +118,7 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .mVisaIndex__underHead {
   height: 0.71rem;
   line-height: 0.71rem;
@@ -199,5 +200,10 @@ export default {
   padding-left: 0.22rem;
   font-size: 0.28rem;
   color: #fd6000;
+}
+.mVisaIndex{
+  width: 100%;
+  height:auto;
+  /* overflow: auto; */
 }
 </style>
