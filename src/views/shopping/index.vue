@@ -87,7 +87,8 @@
 </template>
 <script>
 import Header from "components/around/header";
-import Swiper from "components/shopping/swiper"
+import Swiper from "components/shopping/swiper";
+
 import {getShopping} from "api/shopping";
 
 export default {
@@ -98,31 +99,29 @@ export default {
     },
     async created(){
         let data = await getShopping();
-        console.log(getShopping());
-        this.goodslist = data.taglist;
-        this.SecKilllist = data.SecKilllist; 
-        this.recomlist = data.recomlist; 
+        this.goodslist = data.taglist;  //商品
+        this.SecKilllist = data.SecKilllist;  //限时秒杀
+        this.recomlist = data.recomlist; //
         this.slide_show = data.banners
-        console.log(this.banners);
     },
     data(){
         return {
             title:"游侠集市",
             SecKilllist:[],  //限时秒杀
             goodslist:[]  , //商品
-            recomlist:[]  ,
-            slide_show:[]
+            recomlist:[]  ,  //精品推荐
+            slide_show:[]  //轮播图
         }
     },
     
 }
 </script>
-<style scoped>
+<style>
 
 
-    body,html{
-        width: 100%;
-        height: 100%;
+body,html{
+    width: 100%;
+    height: 100%;
     background: #f4f4f4;
     overflow: hidden;
 }

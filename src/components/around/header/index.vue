@@ -1,9 +1,9 @@
 <template>
     <!-- 头部 -->
     <div class="v-header">
-        <a href="" class="v-back"><span class="iconfont icon-arrowLeft"></span></a>
+        <a href="" class="v-back" @click="handleBack()"><span class="iconfont icon-arrowLeft"></span></a>
         <h1>{{title}}</h1>
-        <a href="" class="v-mine"><span class="iconfont icon-gerenzhongxin"></span></a>
+        <a href="" class="v-mine" @click="handlehome()"><span class="iconfont icon-gerenzhongxin"></span></a>
     </div>
 </template>
 <script>
@@ -21,6 +21,14 @@ export default {
         return{
 
         }
+    },
+    methods:{
+        handleBack(){
+            this.$router.back();
+        },
+        handlehome(){
+            this.$router.push("/home");
+        }
     }
 }
 </script>
@@ -30,7 +38,10 @@ export default {
     width: 100%;
     height: 0.9rem;
     background: #f7f7f7;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 .v-header .v-back{
     display: block;

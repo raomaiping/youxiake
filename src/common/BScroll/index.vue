@@ -16,10 +16,18 @@ export default {
     mounted() {
         this.scroll = new BScroll(this.$refs.wrapper, {
             probeType: 1,
+            pullUpLoad:true,
             tap:true,
             click:true,
-            scrollY: true,
         });    
+    },
+    methods:{
+
+        handlepullingUp(cb){
+            this.scroll.on("pullingUp",()=>{
+                cb();
+            })
+        }
     }
 }
 </script>

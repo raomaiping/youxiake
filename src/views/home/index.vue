@@ -883,6 +883,7 @@ width: 100%;
 	position: fixed;
 	left: 0;
 	bottom: 0;
+	z-index: 200;
 }
 body{
 	position: relative;

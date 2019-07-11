@@ -1,71 +1,83 @@
 <template>
-    <div class="v-competition">
+    <div class="v-competition" ref="scroll">
         <!-- 头部 -->
         <div class="v-competition-header">
             <ul class="v-competition-nav">
-                <li v-for="(item,index) in nav_info" :key="index" @click="handleClick(index)">{{item.nav}}</li>
+                <li v-for="(item,index) in nav_info" :key="index" @click="handleClick(index)" :class="active==index?'headernav':''">{{item.nav}}</li>
             </ul>
         </div>
+
+       
         <!-- 内容区 -->
-        <div class="v-competition-container">
-            <div v-for="(item,index) in sports" :key="index">
-             <!-- 城市活动标题 -->
-                <div class="v-competition-titleimg" v-if="!item.flag">
-                    <img :src="item.flag==0?item.data.count[0]:'' " alt="">
-                </div>
-                <!-- 城市活动 -->
-                <div class="v-competition-sports" v-if="item.flag">
-                    <div class="v-competition-sport">
-                        <span>{{item.data.count[0].jihedi}}</span>
-                        <img class="v-competition-sportimg" :src="item.data.count[0].image">
-                        <div class="v-competition-text">
-                            <p>{{item.data.count[0].product_name}}</p>
-                            <div class="v-competition-detial">
-                                <div class="v-competition-money"><span v-show="Number(item.data.count[0].price)">￥</span>
-                                    <span>{{item.data.count[0].price}}</span>
-                                    <span v-show="Number(item.data.count[0].price)">起</span>
+        <BScroll>
+            <div class="v-competition-container">
+                <div v-for="(item,index) in sports" :key="index">
+                <!-- 城市活动标题 -->
+                    <div class="v-competition-titleimg" v-if="item.flag==0" ref="title">
+                        <img :src="item.flag==0?item.data.count[0]:'' " alt="">
+                    </div>
+                    <!-- 城市活动 -->
+                    <div class="v-competition-sports" v-if="item.flag==2">
+                        <div class="v-competition-sport">
+                            <span>{{item.data.count[0].jihedi}}</span>
+                            <img class="v-competition-sportimg" :src="item.data.count[0].image">
+                            <div class="v-competition-text">
+                                <p>{{item.data.count[0].product_name}}</p>
+                                <div class="v-competition-detial">
+                                    <div class="v-competition-money"><span v-show="Number(item.data.count[0].price)">￥</span>
+                                        <span>{{item.data.count[0].price}}</span>
+                                        <span v-show="Number(item.data.count[0].price)">起</span>
+                                    </div>
+                                    <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
                                 </div>
-                                <div class="v-competition-day"><span v-if="item.data.count[0].days">{{item.data.count[0].days+'天'}}</span><span v-if="item.data.count[0].nights">{{item.data.count[0].nights+'晚'}}</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </BScroll>
+
     </div>
 </template>
 
 <script>
 import {getCompetition,getCompetitionList} from "api/competition"
-import { constants } from 'crypto';
 export default {
     name:"competition",
     async created(){
        let nav_info = await getCompetition();
        let competitionList = await getCompetitionList();
        this.sports = competitionList.data.data;
-       console.log(this.sports);
         this.nav_info = nav_info.data.nav_info;
     },
     data(){
         return {
             nav_info:[],
             sports:[],
+            active:0,
         }
     },
     methods:{
-        // handleClick(index){
-        //     this.competitionTitleSelect = this.competitionTitle[index].data.count[0];
-        // }
+        handleClick(index){
+           let t = this.$refs.title[index].offsetTop;
+           this.$refs.scroll.scrollTop = t-60;
+           this.active = index;
+
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
+
+body,html{
+    width: 100%;
+    height: 100%;
+}
 .v-competition{
     width: 100%;
     height: 100%;
-    overflow-y:auto;
+    overflow: auto;
 }
 
 /* 头部 */
@@ -98,6 +110,8 @@ export default {
     border-bottom: .1rem solid #fff;
     color: #fff;
 }
+
+
 /* 内容区 */
 .v-competition-container{
     width: 100%;
@@ -117,9 +131,8 @@ export default {
     width: 100%;
     padding: 0 .2rem;
     position: relative;
-    margin-top:.1rem;
-    box-sizing: border-box; 
-    background: #fff;
+    margin-top:.1rem; 
+    box-sizing: border-box;
 }
 .v-competition-sport>span{
     position: absolute;
@@ -146,7 +159,7 @@ export default {
     width: 100%;
     height: 1.94rem;
     padding: .2rem;
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 .v-competition-text>p{
     font-size: .3rem;
