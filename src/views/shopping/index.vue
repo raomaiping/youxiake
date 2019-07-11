@@ -8,7 +8,7 @@
             <Swiper :slide_show="slide_show"/>
        
         <!-- 小标题 -->
-        <div class="v-shopping-goods-title">
+        <!-- <div class="v-shopping-goods-title">
             <i></i>
             <span>限时秒杀</span>
             <div class="v-shopping-timego">
@@ -18,11 +18,11 @@
                 <p>07</p>：
                 <p>59</p>
             </div>
-        </div>
+        </div> -->
 
         <!-- 马上抢 -->
-        <div class="v-shopping-fast">
-            <div class="v-shopping-fastbuy">
+        <!-- <div class="v-shopping-fast">
+            <div class="v-shopping-fastbuy" v-if="SecKilllist.length == 0">
                 
                     <img class="v-shopping-fastbuy-img" >
                     <div class="v-shopping-fastbuy-text">
@@ -38,7 +38,7 @@
                     </div>
                     <a href=""></a>
             </div>
-        </div>
+        </div> -->
 
         <!-- 小标题 -->
         <div class="v-shopping-goods-title">
@@ -69,7 +69,7 @@
                 <div class="v-shopping-parks">
                     <ul>
                         <li v-for="(goods,index) in item.goodslist" :key="index">
-                            <img class="v-shopping-parks-img" >
+                            <img class="v-shopping-parks-img" :src="JSON.parse(goods.img_json)[0]">
                             <div class="v-shopping-parks-text">
                                 <p>{{goods.goods_name}}</p>
                                 <div class="v-shopping-parks-price">

@@ -53,7 +53,7 @@ export default {
 
 .v-localhost-autoplay{
     width: 100%;
-    height: 100%;
+    height: 4rem;
     overflow: hidden;
 }
     .slide_show>a{
