@@ -2,7 +2,6 @@
   <div id="homeIndex">
     <!-- <loading1 /> -->
     <section id="e-content">
-
       <div class="e-IndexBanner">
         <div class="e-IndextHeaer">
           <div class="e-headerLocation" @click="handleLocation()">

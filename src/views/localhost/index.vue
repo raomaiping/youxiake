@@ -1,22 +1,27 @@
 <template>
 
     <div id="v-localhost">
-    
-            <!-- 头部 -->
-            <Header :title="title"></Header>
-            <div class="v-container">
-                <!-- 轮播图 -->
-                <Swiper :slide_show="slide_show"/>
-                <!-- 活动指南 -->
-                <LocalSportpoint :sportPoint="sportPoint"/>
+        <!-- 头部 -->
+        <Header :title="title"></Header>
+        <BScroll>
+            <template>
+            <div>
+                <div class="v-container">
+                    <!-- 轮播图 -->
+                    <Swiper :slide_show="slide_show"/>
+                    <!-- 活动指南 -->
+                    <LocalSportpoint :sportPoint="sportPoint"/>
 
-                    <!-- 国内玩乐 -->
-                <Inplay :Itheme_tag="Itheme_tag" :Itheme_lines="Itheme_lines" :Iblock_name="Iblock_name"/>
-                
-                <!-- 出境游 -->
-                <Outplay :theme_tag="theme_tag" :theme_lines="theme_lines" :block_name="block_name"/>
+                        <!-- 国内玩乐 -->
+                    <Inplay />
+                    
+                    <!-- 出境游 -->
+                    <Outplay/>
+                </div>
             </div>
-        </div>
+            </template>
+        </BScroll>
+    </div>    
 </template>
 
 <script>
@@ -40,29 +45,19 @@ export default {
         title:{
             type:String,
             default:"当地游",
-            required:true
+            required:true,
+            
         }
     },
     async created(){
         let sportPoint = await getlocalSport();
-        this.sportPoint = sportPoint.data.class;
-        this.theme_tag = sportPoint.data.en_lines.lines.theme_tag;
-        this.theme_lines = sportPoint.data.en_lines.lines.theme_lines;
-        this.block_name  = sportPoint.data.en_lines.block.block_name;
-        this.Itheme_tag = sportPoint.data.cn_lines.lines.theme_tag;
-        this.Itheme_lines = sportPoint.data.cn_lines.lines.theme_lines;
-        this.Iblock_name = sportPoint.data.cn_lines.block.block_name;
-        this.slide_show = sportPoint.data.slide_show;
+        this.sportPoint = sportPoint.data.class;  //活动指南
+        
+        this.slide_show = sportPoint.data.slide_show;  //轮播图
     },
     data(){
         return{
             sportPoint:[],
-            theme_tag:[],
-            theme_lines:[],
-            block_name:"",
-            Itheme_tag:[],
-            Itheme_lines:[],
-            Iblock_name:"",
             slide_show:[]
         }
     }
@@ -77,10 +72,14 @@ body,html{
     background: #f4f4f4;
 }
 #v-localhost{
-    position: relative;
+    /* position: relative; */
     width: 100%;
     height: 100%;
     overflow-y:auto; 
+}
+.v-container{
+    width: 100%;
+    padding-top:.9rem;
 }
 .v-around-titleall{
     width: 100%;

@@ -1,7 +1,8 @@
 <template>
   <div class="u-qz-list">
-    <ul>
-      <li v-for="(item,index) in cityList" :key="index">
+   <Loading  v-if="loadingFlag"/>
+    <ul v-if="!loadingFlag">
+      <router-link v-for="(item,index) in cityList" :key="index" tag="li" to="/cityCircle">
         <div class="img">
           <img :src="item.cover" alt />
         </div>
@@ -14,7 +15,7 @@
             <i></i>{{item.member_num}}
           </span>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -24,11 +25,17 @@ export default {
   name: "cityBody",
   async created() {
     let data = await cityCircle();
+    if(data){
+      this.loadingFlag = false;
+    }else{
+        this.loadingFlag = true;
+    }
     this.cityList = data.data;
   },
   data() {
     return {
-      cityList: []
+      cityList: [],
+      loadingFlag:true
     };
   }
 };

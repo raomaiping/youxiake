@@ -4,18 +4,17 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-
             "/visas":{
                 target:"https://m.youxiake.com",
                 changOrigin:true,
-                ws:false,
-                ws:false,
+                ws: false, 
+
             },
 
             "/h5":{
                 target:"https://h5.youxiake.com",
                 changOrigin:true,
-                ws:false,
+                ws: false, 
                 pathRewrite:{
                     "^/h5":""
                 },
@@ -23,7 +22,7 @@ module.exports = {
             "/abc":{
                 target:"https://m.youxiake.com",
               changOrigin:true,
-              ws:false,
+              ws: false, 
                 pathRewrite:{
                     "^/abc":""
                 }
@@ -31,7 +30,7 @@ module.exports = {
             "/lai":{
                 target:"https://bbs.youxiake.com",
                 changOrigin:true,
-                ws:false,
+                ws: false, 
                 pathRewrite:{
                     "^/lai":""
                 }
@@ -39,7 +38,8 @@ module.exports = {
             "/web":{
                 target:"http://www.youxiake.com",
                 changOrigin:true,
-                ws:false,
+
+                ws: false, 
                 pathRewrite:{
                     "^/web":""
                 }

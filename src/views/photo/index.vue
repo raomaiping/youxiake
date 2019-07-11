@@ -1,141 +1,148 @@
 <template>
-    <div class="v-photo">
-        <!-- 头部 -->
-        <div class="v-photo-header">
-            <a href=""></a>
-            <h1>
-                <img src="http://static.youxiake.com/new/zt/images/common/logo_m.png" alt="">
-            </h1>
-        </div>
-        <!-- banner -->
-        <div class="v-photo-banner">
-            <img src="http://gallery.youxiake.com/Public/Data/upload/201902/22/64361550823365.png" alt="">
-        </div>
-        <!-- 导航 -->
-        <div class="v-photo-nav">
-            <ul>
-                <li v-for="(item,index) in photonav" :key="index" @click="handleClick(index)" :class="status == index?'v-photo-nav-active':'' ">{{item}}</li>
+    <div class="v-photo" ref="scroll">
+        
+            
+             <BScroll ref="bscroll">
+                    <template>
+                        <div>
+            <!-- 头部 -->
+            <HeaderCom/>
+            <!-- banner -->
+            <div class="v-photo-banner">
+                <img src="http://gallery.youxiake.com/Public/Data/upload/201902/22/64361550823365.png" alt="">
+            </div>
+            <!-- 导航 -->
+            <div class="v-photo-nav" ref="nav" >
+                <ul class="">
+                    <li v-for="(item,index) in photonav" :key="index" @click="handleClick(index)" :class="status == index?'v-photo-nav-active':'' ">{{item}}</li>
 
-            </ul>
-        </div>
-        <!-- 内容 -->
-        <div class="v-photo-container">
-            <!-- 杭州旅拍 -->
-            <div class="v-photo-container-list" v-if="status==0">
-                <a href="" v-for="(item,index) in data" :key="index">
-                    <div class="v-photo-container-img">
-                        <img :src="item.image" alt="">
-                    </div>
-                    <div class="v-photo-container-text">
-                        <h5>{{item.title}}</h5>
-                        <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
-                    </div>
-                    <div class="v-photo-container-txera">
-                        <span>{{item.class_type}}</span>
-                        <span> | </span>
-                        <span>{{item.jihedi+'集合'}}</span>
-                    </div>
-                    <div class="v-photo-container-price">
-                        <div>{{'￥'+item.adultprice+'元'}}</div>
-                        <div>{{item.days+'天'}}</div>
-                    </div>
-                </a>
+                </ul>
             </div>
 
-            <!-- 成都旅拍 -->
-            <div class="v-photo-container-list" v-if="status==1">
-                <a href="" v-for="(item,index) in dataC" :key="index">
-                    <div class="v-photo-container-img">
-                        <img :src="item.image" alt="">
+               
+                <!-- 内容 -->
+                <div class="v-photo-container">
+                    <!-- 杭州旅拍 -->
+                    <div class="v-photo-container-list" v-if="status==0">
+                        <a href="" v-for="(item,index) in dataH" :key="index">
+                            <div class="v-photo-container-img">
+                                <img :src="item.image" alt="">
+                            </div>
+                            <div class="v-photo-container-text">
+                                <h5>{{item.title}}</h5>
+                                <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
+                            </div>
+                            <div class="v-photo-container-txera">
+                                <span>{{item.class_type}}</span>
+                                <span> | </span>
+                                <span>{{item.jihedi+'集合'}}</span>
+                            </div>
+                            <div class="v-photo-container-price">
+                                <div>{{'￥'+item.adultprice+'元'}}</div>
+                                <div>{{item.days+'天'}}</div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="v-photo-container-text">
-                        <h5>{{item.title}}</h5>
-                        <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
-                    </div>
-                    <div class="v-photo-container-txera">
-                        <span>{{item.class_type}}</span>
-                        <span> | </span>
-                        <span>{{item.jihedi+'集合'}}</span>
-                    </div>
-                    <div class="v-photo-container-price">
-                        <div>{{'￥'+item.adultprice+'元'}}</div>
-                        <div>{{item.days+'天'}}</div>
-                    </div>
-                </a>
-            </div>
 
-            <!-- 出境旅拍 -->
-            <div class="v-photo-container-list" v-if="status==2">
-                <a href="" v-for="(item,index) in dataO" :key="index">
-                    <div class="v-photo-container-img">
-                        <img :src="item.image" alt="">
+                    <!-- 成都旅拍 -->
+                    <div class="v-photo-container-list" v-if="status==1">
+                        <a href="" v-for="(item,index) in dataC" :key="index">
+                            <div class="v-photo-container-img">
+                                <img :src="item.image" alt="">
+                            </div>
+                            <div class="v-photo-container-text">
+                                <h5>{{item.title}}</h5>
+                                <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
+                            </div>
+                            <div class="v-photo-container-txera">
+                                <span>{{item.class_type}}</span>
+                                <span> | </span>
+                                <span>{{item.jihedi+'集合'}}</span>
+                            </div>
+                            <div class="v-photo-container-price">
+                                <div>{{'￥'+item.adultprice+'元'}}</div>
+                                <div>{{item.days+'天'}}</div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="v-photo-container-text">
-                        <h5>{{item.title}}</h5>
-                        <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
-                    </div>
-                    <div class="v-photo-container-txera">
-                        <span>{{item.class_type}}</span>
-                        <span> | </span>
-                        <span>{{item.jihedi+'集合'}}</span>
-                    </div>
-                    <div class="v-photo-container-price">
-                        <div><i v-if="Number(item.adultprice)">￥</i>{{item.adultprice}}<i v-if="Number(item.adultprice)">起</i></div>
-                        <div>{{item.days+'天'}}</div>
-                    </div>
-                </a>
-            </div>
 
-
-        </div>
-        <!-- 固定区 -->
-        <div class="v-photo-nochange">
-            <div class="v-photo-team">
-                <a href="">
-                    <img src="http://static.youxiake.com/new/yixing/images/custome01.png" alt="">
-                </a>
-            </div>
-            <h3>专题推荐</h3>
-            <!-- 轮播图 -->
-        <div class="swiper-container v-photo-swiper" ref="banner">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide slide_show">
-                <a href="">
-                    <img src="http://gallery.youxiake.com/Public/Data/upload/201901/07/46141546857568.png "/>
-                    </a> 
+                    <!-- 出境旅拍 -->
+                    <div class="v-photo-container-list" v-if="status==2">
+                        <a href="" v-for="(item,index) in dataO" :key="index">
+                            <div class="v-photo-container-img">
+                                <img :src="item.image" alt="">
+                            </div>
+                            <div class="v-photo-container-text">
+                                <h5>{{item.title}}</h5>
+                                <p><i>{{item.class_type}}</i> {{item.sub_name}}</p>
+                            </div>
+                            <div class="v-photo-container-txera">
+                                <span>{{item.class_type}}</span>
+                                <span> | </span>
+                                <span>{{item.jihedi+'集合'}}</span>
+                            </div>
+                            <div class="v-photo-container-price">
+                                <div><i v-if="Number(item.adultprice)">￥</i>{{item.adultprice}}<i v-if="Number(item.adultprice)">起</i></div>
+                                <div>{{item.days+'天'}}</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="swiper-slide slide_show">
-                <a href="">
-                    <img src="http://gallery.youxiake.com/Public/Data/upload/201901/07/95461546858582.png"/>
-                    </a> 
+                    
+            <!-- 固定区 -->
+            <div class="v-photo-nochange">
+                <div class="v-photo-team">
+                    <a href="">
+                        <img src="http://static.youxiake.com/new/yixing/images/custome01.png" alt="">
+                    </a>
                 </div>
-                <div class="swiper-slide slide_show">
-                <a href="">
-                    <img src="http://gallery.youxiake.com/Public/Data/upload/201804/08/45421523169603.jpg"/>
-                    </a> 
-                </div>
-                <div class="swiper-slide slide_show">
-                <a href="">
-                    <img src="http://gallery.youxiake.com/Public/Data/upload/201803/08/89051520497553.jpg"/>
-                    </a> 
-                </div>
+                <h3>专题推荐</h3>
+                <!-- 轮播图 -->
+                <div class="swiper-container v-photo-swiper" ref="banner">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide_show">
+                        <a href="">
+                            <img src="http://gallery.youxiake.com/Public/Data/upload/201901/07/46141546857568.png "/>
+                            </a> 
+                        </div>
+                        <div class="swiper-slide slide_show">
+                        <a href="">
+                            <img src="http://gallery.youxiake.com/Public/Data/upload/201901/07/95461546858582.png"/>
+                            </a> 
+                        </div>
+                        <div class="swiper-slide slide_show">
+                        <a href="">
+                            <img src="http://gallery.youxiake.com/Public/Data/upload/201804/08/45421523169603.jpg"/>
+                            </a> 
+                        </div>
+                        <div class="swiper-slide slide_show">
+                        <a href="">
+                            <img src="http://gallery.youxiake.com/Public/Data/upload/201803/08/89051520497553.jpg"/>
+                            </a> 
+                        </div>
 
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
-            <!-- 如果需要分页器 -->
-            <div class="swiper-pagination"></div>
-        </div>
-
-        <!-- 底部 -->
-        <div class="v-photo-footer">
-            <div>
-                <i></i>
-                <a href="">400-670-6300</a>|
-                <a href="">返回首页</a>
+             <!-- 底部 -->
+            <div class="v-photo-footer">
+                <div>
+                    <i></i>
+                    <a href="">400-670-6300</a>|
+                    <a href="">返回首页</a>
+                </div>
+                <p>ICP经营许可证：浙 ICP 备 09011712 号-1</p>
+                <p> © 2019 youxiake.com 版权所有</p>
             </div>
-            <p>ICP经营许可证：浙 ICP 备 09011712 号-1</p>
-            <p> © 2019 youxiake.com 版权所有</p>
-        </div>
-    </div>
+            
+            </div>
+            </template>
+            </BScroll>
+          
+            
+        
 </div>
 </template>
 
@@ -145,41 +152,101 @@ import Swiper from "swiper"
 import {getPhotoH,getPhotoC,getPhotoO} from "api/photo";
 export default {
     name:"photo",
-    async created(){
-        this.data = await getPhotoH();
-        this.dataC = await getPhotoC();
-        this.dataO = await getPhotoO();
-        console.log(this.data);
-    },
     data(){
         return {
-            data:[],
+            dataH:[],
             dataC:[],
             dataO:[],
             photonav:['杭州旅拍','成都旅拍','出境旅拍'],
-            status:0,  
+            status:0, 
+            pageH:1,
+            pageC:1,
+            PageO:1,
+
         }
     },
+    created(){
+
+        this.handleHmore(this.pageH);    
+
+    },
     methods:{
+
         handleClick(index){
-            this.status = index;
+           
+            if(index == 0){
+                this.handleHmore(this.pageH );
+                 this.status = 0;
+            }
+            if(index == 1){
+               this.handleCmore(this.pageC);
+                this.status = 1;
+            }
+            if(index == 2){
+                this.handleOmore(this.pageO);
+                 this.status = 2;
+            }
+        },
+        async handleHmore(pageH){
+            let DataH = await getPhotoH(pageH);
+            this.dataH = [...this.dataH,...DataH];
+            this.$refs.bscroll.scroll.finishPullUp();
+            this.$refs.bscroll.scroll.refresh();
+            this.pageH++;
+            
+        },
+         async handleCmore(pageC){
+            let DataC = await getPhotoC(pageC);
+            this.dataC = [...this.dataC,...DataC];
+            this.$refs.bscroll.scroll.finishPullUp();
+            this.$refs.bscroll.scroll.refresh();
+            this.pageC++;
+        },
+         async handleOmore(pageO){
+            let DataO = await getPhotoO(pageO);
+            this.dataO = [...this.dataO,...DataO];
+            this.$refs.bscroll.scroll.finishPullUp();
+            this.$refs.bscroll.scroll.refresh();
+            this.pageO++;
+        }
+    },
+    mounted(){
+       if(this.status==0){
+            this.$refs.bscroll.handlepullingUp(()=>{
+                this.handleHmore(this.pageH);
+             
+            });
+        }
+
+         if(this.status==1){
+            this.$refs.bscroll.handlepullingUp(()=>{
+                this.handleCmore(this.pageC);
+              
+            });
+        }
+
+        if(this.status==2){
+            this.$refs.bscroll.handlepullingUp(()=>{
+                this.handleOmore(this.pageO);
+               
+            });
         }
     },
     updated(){
         if(!this.swiper){
-            this.swiper = new Swiper(this.$refs.banner,{
-            direction:'horizontal',
-            loop:true,
-            
-            autoplay:{
-                delay:3000,
-                stopOnLastSlide:false,
-                disableOnInteraction: false
-            },
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
+                this.swiper = new Swiper(this.$refs.banner,{
+                direction:'horizontal',
+                loop:true,
+                
+                autoplay:{
+                    delay:3000,
+                    stopOnLastSlide:false,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
         }
         
     }
@@ -191,13 +258,11 @@ body{
     background: #ededed;
 }
 .v-photo{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow-y:auto; 
-    box-sizing: border-box;
-}
 
+    width:100%;
+    height: 100%;
+    overflow: auto;
+}
 /* 游侠拍头部 */
 .v-photo-header{
     width: 100%;
@@ -278,6 +343,11 @@ body{
     color: #f59000;
 }
 
+.v-photo-wrap{
+    /* width: 100%;
+    height: 100%; */
+    /* overflow: auto; */
+}
 /* 内容区 */
 .v-photo-container{
     width: 100%;
@@ -394,7 +464,8 @@ body{
     width:7.1rem ;
     height: 2rem;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0 auto .2rem;
+
 }
 .v-photo-swiper a {
     display: block;
