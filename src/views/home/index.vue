@@ -488,6 +488,7 @@ export default {
   height: 100%;
   padding-bottom: 1.1rem;
   position: relative;
+  overflow:auto;
 }
 .e-IndextHeaer {
   width: 100%;
