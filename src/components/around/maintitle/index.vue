@@ -29,30 +29,27 @@
             </div>
 </template>
 <script>
+import { getAroundMessage,getAroundMainT} from "api/around"; 
 export default {
     name:"maintitle",
-    props:{
-        theme_lines:{
-
-            type:Array,
-            default:[],
-            required:true
-        },
-        theme_tag:{
-            
-            type:Array,
-            default:[],
-            required:true
-        }
-    },
     data(){
         return {
-            status:''
+            status:0,
+            theme_lines: [], //出境游
+            theme_tag: [],   //出境游标题
         }
     },
+     async created() {
+        let tags = await getAroundMessage();
+        this.theme_tag = tags.data.theme_lines.lines.theme_tag;
+        let aroundData = await getAroundMainT(this.theme_tag[this.status].id);
+        this.theme_lines = aroundData.data.theme_lines;
+  },
      methods:{
-        handleclick(index){
+      async  handleclick(index){
             this.status = index;
+            let aroundData = await getAroundMainT(this.theme_tag[this.status].id);
+            this.theme_lines = aroundData.data.theme_lines;
         }
     }
 }

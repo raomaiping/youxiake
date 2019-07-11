@@ -1,15 +1,28 @@
 <template>
-  <div id="v-around">
-    <Header :title="title"></Header>
-    <div class="v-container">
-      <Banner :lines="lines" />
-      <!-- 活动日历 -->
-      <div class="v-datetable">
-        <a href></a>
-      </div>
-      <Gooutnumber :Gtheme_lines="Gtheme_lines" :Gtheme_tag="Gtheme_tag" />
-      <Maintitle :theme_lines="theme_lines" :theme_tag="theme_tag" />
-    </div>
+    <div id="v-around">
+      <Loading  v-if="loadingflag"/>
+   <Header :title="title"></Header>
+  <div class="v-around-wrap">
+    <BScroll ref="bscroll">
+      <template>
+        <div>
+          <div class="loading" v-if="loadflag" >
+            <i class="fa fa-spinner fa-pulse"></i>
+          </div>
+         
+          <div class="v-container">
+              <Banner :lines="lines" />
+              <!-- 活动日历 -->
+              <div class="v-datetable">
+                <a href></a>
+              </div>
+              <Gooutnumber/>
+              <Maintitle/>
+          </div>
+        </div>
+      </template>
+    </BScroll>
+  </div>
   </div>
 </template>
  
@@ -18,39 +31,49 @@ import Header from "components/around/header";
 import Banner from "components/around/banner";
 import Gooutnumber from "components/around/gooutnumber";
 import Maintitle from "components/around/maintitle";
-import { getAroundMessage } from "api/around";
+import { getAroundMessage } from "api/around";   
+import { setTimeout, clearTimeout } from 'timers';
 export default {
   name: "around",
   components: {
     Header,
     Banner,
     Gooutnumber,
-    Maintitle
+    Maintitle,
   },
   async created() {
     let aroundData = await getAroundMessage();
-    this.theme_lines = aroundData.data.theme_lines.lines.theme_lines;
-    this.theme_tag = aroundData.data.theme_lines.lines.theme_tag;
-    this.Gtheme_lines = aroundData.data.days.lines.theme_lines;
-    this.Gtheme_tag = aroundData.data.days.lines.theme_tag;
+    if(aroundData){
+      this.loadingflag = false;
+    }else{
+      this.loadingflag = true;
+    }
     this.lines = aroundData.data.hot_lines.lines;
+    
   },
   data() {
     return {
       title: "周边游",
-      theme_lines: [],
-      theme_tag: [],
-      Gtheme_lines: [],
-      Gtheme_tag: [],
-      lines: []
+      lines: [] , //banner图
+      loadflag:false,
+      loadingflag:true,
     };
   },
   mounted() {
-    let scroll = new BScroll(".wrapper", {
-      scrollY: true,
-      click: true
-    });
-  }
+    this.$refs.bscroll.scroll.on("scroll",({x,y})=>{
+      if(y>=30){
+          this.loadflag = true;
+      }
+    })
+    this.$refs.bscroll.scroll.on("scrollEnd",()=>{
+      clearTimeout(loading);
+      let loading =  setTimeout(() => {
+          this.loadflag = false;
+        }, 200);
+        
+    })
+  },
+
 };
 </script>
 <style>
@@ -61,14 +84,26 @@ html {
   height: 100%;
   background: #f4f4f4;
 }
+.loading{
+  width: 100%;
+  font-size: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 /* 整个滑动内容块 */
 #v-around {
-  position: relative;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-}
 
+}
+.v-around-wrap{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-top: .9rem;
+}
 /* 出游天数 主题旅游*/
 .v-around-titleall {
   width: 100%;
@@ -215,7 +250,6 @@ html {
 /* 内容部分 */
 .v-container {
   width: 100%;
-  height: 5.2rem;
   margin-bottom: 0.2rem;
 }
 .v-datetable {
