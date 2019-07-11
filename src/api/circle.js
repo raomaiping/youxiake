@@ -20,10 +20,10 @@ export const themeList = ()=>http("get","/lai/api/mdd/themeRecommendNew",{type:0
 export const Mdd = (month)=>http("get","/lai/api/mdd/themeRecommendNew",{theme:month ,type:2})
 
 //游记      
-export const articles = (page)=>http("get","/lai/api/home/articleList",{type:page})
+export const articles = (num,page)=>http("get","/lai/api/home/articleList",{type:num,iPageSize:10,page:page})
 
 export const topArticle = ()=>http("get","/lai/api/home/topArticle")
-//主题游        https://m.youxiake.com/api/channel/cn
+//主题游      
 
 export const Zty = ()=>http("get","/abc/api/zty")
 
