@@ -31,7 +31,6 @@ export default {
         }
     },
     mounted(){
-        console.log(this.$refs.banner_);
        new Swiper(this.$refs.banner_,{
             loop:true,
             
