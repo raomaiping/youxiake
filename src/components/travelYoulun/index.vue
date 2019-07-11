@@ -1,8 +1,5 @@
 <template>
 
-  <BScrolling ref="bscroll">
-    <template>
-
 <div>
      <div v-if="scrollLoading">
       <i class="fa fa-spinner fa-pulse loading"></i>
@@ -71,8 +68,7 @@
   </div>
 
 </div>
-    </template>
-  </BScrolling>
+
 </template>
 
 <script>
@@ -107,24 +103,30 @@ export default {
       scrollLoading:false
     };
   },
-  mounted(){
+  mounted(){  
+      this.scroll = new BScroll(this.$refs.travelBody, {
+      probeType: 1,
+      tap:true,
+      click:true
+    });
     
-      this.scroll = new BScroll(this.$refs.travelBody)   
+    this.scroll.on("scroll",({x,y})=>{
+      this.scrollLoading = true
+    })
+     
+    this.scroll.on("scrollEnd",()=>{
+       setTimeout(()=>{
+     this.scrollLoading = false
+         cb();
+          },2000)
+   })
 
 
-      this.$refs.bscroll.handleScrollStart(()=>{
-        console.log(123);
-          
-        this.scrollLoading = true;
-      })
+  },
 
-      this.$refs.bscroll.handleScrollEnd(()=>{
-        this.scrollLoading = false;
-      })
-      
 
   }
-};
+
 </script>
 
 <style >

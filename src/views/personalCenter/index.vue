@@ -64,11 +64,11 @@
                             "></i><span>常用出行人</span></a>
                     <a href="/editpwd" class="mUserCenterService__box mUserCenterService__box--password"><i class="i6
 
-                            "></i><span>修改密码</span></a>
-                    <a href="/editpwd" class="mUserCenterService__box mUserCenterService__box--password"><i class="i7
-
-                            "></i><span>在线客服</span></a>
-                    <a href="/jump" class="mUserCenterService__box mUserCenterService__box--app"><i class="i8
+                            "></i><span>修改密码</span>
+                            </a>
+                    <a href="javascript:void(0)" @click="clickToggle()"  class="mUserCenterService__box mUserCenterService__box--password">
+                    <i class="i7"></i><span>在线客服</span></a>
+                    <a class="mUserCenterService__box mUserCenterService__box--app"><i class="i8
                         "></i><span>游侠客APP</span></a>
                 </div>
             </div>
@@ -94,7 +94,7 @@
   
             </div>
         </div>
-       <div class="mCustomerService__container">
+       <div class="mCustomerService__container" v-show= onlineServie>
             <div id="vux-scroller-xnj22"
                 style="height: 8rem; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative; overflow: hidden;">
                 <div class="xs-container"
@@ -109,7 +109,7 @@
                 </div>
                 <div class=" xs-fixed-container"></div>
             </div>
-            <div class="container__cancel">取消</div>
+            <div  @click="clickToggle2()"    class="container__cancel">取消</div>
         </div>
 
 	<div class="e-mBottomNav">
@@ -145,8 +145,18 @@ export default {
     },
     data(){
         return{
-            onlineTravelList:[]
+            onlineTravelList:[],
+            onlineServie:false
         }
+    },
+    methods:{
+        clickToggle(){
+            this.onlineServie =true
+        },
+        clickToggle2(){
+            this.onlineServie =false
+        }
+
     }
 }
 </script>
@@ -435,8 +445,9 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAmCAYAAACCjR
 
 }
 .mCustomerService__container{
+    top: 3rem;
     padding: 0.2rem;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 1rem;
     -webkit-box-orient: vertical;

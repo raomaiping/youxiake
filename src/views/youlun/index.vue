@@ -4,7 +4,7 @@
 
         <div class="mSearchResult__fixed__container">
             <div class="e-SearchHeader">
-                <div class="SearchLeft">
+                <div class="SearchLeft" @click="handleBack()">
                     <i class="iconfont icon-arrowLeft"></i>
                     
                 </div>
@@ -13,7 +13,7 @@
                     <!-- <i class="iconfont icon-fangdajing"></i> -->
                     <i class="iconfont icon-shanchu"></i>
                 </div>
-                <div class="e-headerHome">
+                <div class="e-headerHome" @click="handleTo()">
                     <i class="iconfont icon-home-g"></i>
                 </div>
 
@@ -46,18 +46,8 @@
 
 
 
-        <div class="route-container-scroller"  >
-
-<!-- ----------分割线-------- -->
-
-  <div>
  <travelYoulun :search="serchResule"/>
-  </div>
-   
 
-<!-- ---------------------- -->
-  
-        </div>
     </div>
 
     </div>
@@ -106,7 +96,17 @@ export default {
       this.$refs.bscroll.handleScrollEnd(()=>{
         this.scrollLoading = false;
       })
-  }
+      
+  },
+       methods:{
+           handleBack(){
+               this.$router.back()
+           },
+           handleTo(){
+               this.$router.push("/home")
+           }
+            
+    }
 }
 </script>
 

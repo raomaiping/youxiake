@@ -51,6 +51,14 @@ module.exports = {
                 pathRewrite:{
                     "^/movie":""
                 }
+            },
+            "/maoyan":{
+                target:"http://39.97.33.178",
+                changOrigin:true,
+                ws:false,
+                pathRewrite:{
+                    "^/maoyan":""
+                }
             }
         }
     },

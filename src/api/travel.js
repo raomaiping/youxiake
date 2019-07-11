@@ -105,23 +105,6 @@ export const getTravelSearch = (val)=>http("get","/abc/api/search",{
 
 })
 
+// 借用猫眼接口
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const search = ()=>http("get","/movie/api/searchList",
-// {
-// cityId:10,
-// // kw:"周星驰"
-// })  
+export const cityList = ()=>http("get","/maoyan/api/cityList")

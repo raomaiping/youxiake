@@ -1,5 +1,6 @@
 export default {
     path:"/home",
+    redirect:"/home/domesticTravel",
     component:()=>import("views/home"),
     name:"home",
     children:[

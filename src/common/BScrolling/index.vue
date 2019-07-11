@@ -16,7 +16,9 @@ export default {
       probeType: 1,
       tap:true,
       click:true
-    });    
+    }); 
+    
+    
   },
   methods:{
      handleScrollTo(y){
