@@ -2,7 +2,7 @@
   <div class="u-qz-list">
    <Loading  v-if="loadingFlag"/>
     <ul v-if="!loadingFlag">
-      <li v-for="(item,index) in cityList" :key="index">
+      <router-link v-for="(item,index) in cityList" :key="index" tag="li" to="/cityCircle">
         <div class="img">
           <img :src="item.cover" alt />
         </div>
@@ -15,7 +15,7 @@
             <i></i>{{item.member_num}}
           </span>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
