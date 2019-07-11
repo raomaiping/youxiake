@@ -201,7 +201,9 @@ export default {
   font-size: 0.28rem;
   color: #fd6000;
 }
-.mVisaIndex__country{
-  overflow: auto;
+.mVisaIndex{
+  width: 100%;
+  height:auto;
+  /* overflow: auto; */
 }
 </style>
