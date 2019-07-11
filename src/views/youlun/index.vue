@@ -1,6 +1,6 @@
 <template>
-    <div>
-            <div class="mSearchResult__container">
+    <div >
+     <div class="mSearchResult__container">
 
         <div class="mSearchResult__fixed__container">
             <div class="e-SearchHeader">
@@ -9,8 +9,8 @@
                     
                 </div>
                 <div class="headerSearch">
-                    <input placeholder="游轮" type="search" class="search__input">
-                    <i class="iconfont icon-fangdajing"></i>
+                    <input placeholder="游轮" type="search" class="search__input" v-model="inputVal">
+                    <!-- <i class="iconfont icon-fangdajing"></i> -->
                     <i class="iconfont icon-shanchu"></i>
                 </div>
                 <div class="e-headerHome">
@@ -21,13 +21,7 @@
             </div>
             <div class="navSlider__list">
                 <li class="active" v-for="(item,index) in travelList2" :key ="index">{{item.name}}</li>
-                <!-- <li class="">跟团游</li>
-                <li class="">当地玩乐</li>
-                <li class="">自由行</li>
-                <li class="">邮轮</li>
-                <li class="">大型活动</li>
-                <li class="">体育赛事</li>
-                <li class="">分享会</li> -->
+
             </div>
             <div class="filter-container">
 
@@ -49,10 +43,18 @@
 
         </div>
 
-        <div class="route-container-scroller">
-<!-- ------------------ -->
 
-    <travelYoulun/>
+
+
+        <div class="route-container-scroller"  >
+
+<!-- ----------分割线-------- -->
+
+  <div>
+ <travelYoulun :search="serchResule"/>
+  </div>
+   
+
 <!-- ---------------------- -->
   
         </div>
@@ -62,6 +64,9 @@
 </template>
 <script>
 import {getTravelList} from "api/travel.js";
+// import {search} from "api/travel.js";
+import {getTravelSearch} from "api/travel.js";
+
 import TravelYoulun from "components/travelYoulun"
 
 export default {
@@ -70,17 +75,38 @@ export default {
         TravelYoulun
         },
     async created(){
-   let data = await getTravelList()
-   console.log(data);
-   
+   let data = await getTravelList();
+   let data2 = await getTravelSearch("厦门");
+//    console.log(data2);
     this.travelList2 =data.data.class
     },
     data(){
         return{
-       travelList2:[]
+       travelList2:[],
+       inputVal:'',
+       serchResule:[],
       }
-    }
-  
+    },
+    watch:{
+       
+        async inputVal (newVal){
+            let data3 = await getTravelSearch(newVal)
+            this.serchResule= data3.data.lines.data
+            console.log(data3.data);
+            
+            
+                          
+        }
+    },
+      mounted(){
+      this.$refs.bscroll.handleScrollStart(()=>{
+        this.scrollLoading = true;
+      })
+
+      this.$refs.bscroll.handleScrollEnd(()=>{
+        this.scrollLoading = false;
+      })
+  }
 }
 </script>
 
@@ -126,6 +152,14 @@ export default {
     position: relative;
     width: 5.76rem;
     height: 0.9rem;
+}
+.loading{
+    width:100%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    
 }
 
 .search__input{

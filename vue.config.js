@@ -43,6 +43,14 @@ module.exports = {
                 pathRewrite:{
                     "^/web":""
                 }
+            },
+            "/movie":{
+                target:"http://39.97.33.178",
+                changOrigin:true,
+                ws:false,
+                pathRewrite:{
+                    "^/movie":""
+                }
             }
         }
     },

@@ -1,5 +1,10 @@
 <template>
+
     <div id ="homeIndex">
+
+		
+
+		<!-- <loading1 /> -->
     <section id="e-content">
 		<div class="e-IndexBanner">
 			<div class="e-IndextHeaer">
@@ -212,53 +217,26 @@
 
 		<div class="e-IndexLine">
 			<div class="mIndexLine__header"><span>热门目的地推荐</span></div>
-            <div class="mIndexLine__nav"><div class="nav__header"><div class="focus">国内游</div><div class="">出境游</div><div class="">周边游</div><div class="">同城会</div></div> <div class="nav__body"><div class="focus">热门</div><div class="">内蒙</div><div class="">新疆</div><div class="">西北</div><div class="">贵州</div><div class="">广西</div><div class="">四川</div><div class="">西藏</div><div class="">云南</div><div class="">秦晋</div><div class="">华南</div><div class="">华北</div><div class="">华中</div><div class="">华东</div><div class="">更多</div></div></div>
-			<a href="#" class="body__line" v-for="(item ,index) in homeLinesList" :key="index">
-				
-				
-				<div class="line__pictrue">
-					 <img :src="item.thumb" alt="">
-					<div class="line__type">{{item.product_type}} | {{item.place_label}}</div>
-					<div class="line__box">
-						<div class="line__price">{{item.price_label}}</div>
-						<div class="line__day">{{item.days}}</div>
-					</div>
-				</div>
-				<div class="line__content">
-					<div class="line__title">{{item.product_name}}</div>
-					<div class="line__desc"><span>{{item.product_cat}}</span>{{item.sub_name}}</div>
-				</div>
-			</a>
-			<!-- <a href="#" class="body__line">
-					<div class="line__pictrue">
-						 <img src="https://gallery.youxiake.com/Public/Data/upload/productimg/201906/28/5d15b9ae48440.jpg" alt="">
-						<div class="line__type">跟团游 | 丽江出发</div>
-						<div class="line__box">
-							<div class="line__price">￥1280起</div>
-							<div class="line__day">7天</div>
-						</div>
-					</div>
-					<div class="line__content">
-						<div class="line__title">[滇西北精华]王牌线路，避暑首选，每批成行！
-							丽江-玩转泸沽湖-普达措国家公园-香格里拉-松赞林寺-虎跳峡-束河古镇，香巴拉秘境7日深度游（全程品质住宿、半价加购接送机）</div>
-						<div class="line__desc"><span>深度游</span>&lt;丽江集合解散&gt;玩法、住宿、服务2019全面升级</div>
-					</div>
-			</a> -->
-			<!-- <a href="#" class="body__line">
-						<div class="line__pictrue">
-							 <img src="https://gallery.youxiake.com/Public/Data/upload/productimg/201906/28/5d15b9ae48440.jpg" alt="">
-							<div class="line__type">跟团游 | 丽江出发</div>
-							<div class="line__box">
-								<div class="line__price">￥1280起</div>
-								<div class="line__day">7天</div>
-							</div>
-						</div>
-						<div class="line__content">
-							<div class="line__title">[滇西北精华]王牌线路，避暑首选，每批成行！
-								丽江-玩转泸沽湖-普达措国家公园-香格里拉-松赞林寺-虎跳峡-束河古镇，香巴拉秘境7日深度游（全程品质住宿、半价加购接送机）</div>
-							<div class="line__desc"><span>深度游</span>&lt;丽江集合解散&gt;玩法、住宿、服务2019全面升级</div>
-						</div>
-			</a>	 -->
+            <div class="mIndexLine__nav">
+				<div class="nav__header">
+			 <router-link  @click.native="handlenav1()" :class="regNav1 == true?'navFocus':''"  to="/home/domesticTravel" tag="div">国内游</router-link>
+			 <router-link @click.native="handlenav2()" :class="regNav2 == true?'navFocus':''"  to="/home/outboundTravel" tag="div"> 出境游 </router-link>		
+				</div> 
+
+				<div class="nav__body">
+					<section class="nav_domesticTravel" v-show= regNav1>
+						<div class="focus" v-for="(item,index) in regionNav1" :key ="index">{{item}}</div>
+					</section>
+
+					<section class="nav_outboundTravel" v-show=  regNav2 >
+						<div  v-for="(item,index) in regionNav2" :key ="index">{{item}}</div>
+					</section>
+
+				</div></div>
+				<router-view></router-view>
+
+
+
 		</div>
 		
 	</section>
@@ -279,6 +257,7 @@
 import {getHomeIndex} from "api/travel.js";
 import {getHomeLines} from "api/travel.js";
 import Swiper from "components/homeBanner"
+import { truncate } from 'fs';
 
 
 export default {
@@ -288,6 +267,11 @@ export default {
 	},
 
   async	created(){
+	 if(data){
+      this.loadingFlag = false
+    }else{
+      this.loadingFlag = true
+    }
 	  
 	let data  =	await getHomeIndex()
 	this.homeNav1 = data.data.navs
@@ -301,18 +285,36 @@ export default {
 	
 	data (){
 		return{
+		   regionNav1:["热门","内蒙","新疆","西北","贵州","广西","四川","西藏","云南","秦晋","华南","华北","华中","华东","更多"],        
+	       regionNav2:["热门","中东非","南亚","欧洲","海岛","东南亚","日朝韩","澳新","美加","极地"],
+	      
 			homeNav1:[],
 			homeRecom1:[],
 			homeLinesList:[],
 			jinxuanNavList:[1,"/jinxuan",2],
-			imgs:[]
-            
+			imgs:[],
+			regNav1:true,
+			regNav2:false
+
 		}
-	}
+
+	},
+	   methods:{
+            handlenav1(){
+		
+				this.regNav1 = true;
+				this.regNav2 = false;
+			},
+
+	        handlenav2(){
+				this.regNav1 = false;
+				this.regNav2 = true;
+			},		
+        }
 }
 </script>
 
-<style scoped >
+<style  >
 
 .route-title1{
 	display: block;
@@ -928,7 +930,13 @@ background-size: 1.42rem .31rem;
     text-align: center;
     font-size: .32rem;
     color: #000;
+	/* border-bottom:solid 0.3rem orange; */
 }
+.mIndexLine__nav .nav__header .navFocus{
+	border-bottom:solid 0.1rem orange;
+}
+
+
 .mIndexLine__nav .nav__body {
     padding-top: .2rem;
     font-size: 0;
@@ -952,7 +960,19 @@ background-size: 1.42rem .31rem;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-}  
+}
+.nav__body{
+	width:100%;
+	height:2.5rem;
+	overflow: hidden;
+   
+}
+.mIndexLine__nav .nav__body .nav_domesticTravel ,.mIndexLine__nav .nav__body .nav_outboundTravel{
+	width:100%;
+	height:2.5rem
+}
+
+
 
 </style>
 
