@@ -65,18 +65,18 @@
             alt
           />分享会
         </a>
-        <a href>
+          <router-link to="/photo" tag="a">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAACrklEQVRoge2Zz04TURjFfwlJiZESnoANGwIGcNdXwJ1V3NRnYMNTwAJQSuITuNGlbjTGlzC2wKIYkAcQQ6ipqYt7G6dfp8N8t9f5U+9Jvs1Mz5lz0rn3fncuBAQEBASUB5vAFdCfsK6sVmHhI2Q0bCGxhL+Qg1rKNEFKbOM/6HamCVLiHcMmdxw0doTG+8i9ReAD0I3c79pri86ulbgH3AiTyw46y0LjxmoDfGT8P/95Au8qbIoHf5tAqyO0Htnr14wP2p3geYlYAfaBFnCbYCCr+g18tZ5WfASsAE0rnHe4pNCv+PvKO4VMGidFq0/WsxrHBTCvraY25CrQEyKnQB2Y14r9A8xjvJwy7LGH8Z4aB0LgBFjw6dQTFoA2w14PNAItQa57NugTdYa9tjTkaDfSpxiv6zhUGfaqWmPlIC86nP36DFoBngGvMV1QF9P1tOy1LRyXhQhyD/oYOIvRk3XGZPNAbkFngN0Ynbtq13K1yC2oS8hoWC1yCfo0ht8FXgA1YM5WDThidIbvW41M/LoSK8CF4H4HHiZwNuxvopxLdBNU5kEbgneLCXIX1hnd/j3PwK8z8Y3gadox2Xa+VXAzD3oueDUFtya45wpu5kHl66cZZ7OCq2nlMg/6A/egc5Qo6IngTe2rKyejlwrukeAWejKKW17WU/DWKNnyEtcwXJK8lm7Y30jObAZ+3YmYbZfkR1vA+7aSWsAt5TNzCQqwF6ORtvYcnpdb0BlGJ5c01aRk27QBnpB+463dsXjx6ysomAmqgVkuOsAvWx17rcEUfErJCs5+y/S5U7aO1xpymT9gf9GQ5d6wTXmOJA41Ag8Yf8hU9enUEVWMF7mJ6GG8q1DGY8NjbUj4jw6CB2Gn/mg/ilXMIG9jFvu8w/3EzK6HOIzJgICAgIAAT/gDxRSIxClVansAAAAASUVORK5CYII="
             alt
           />游侠旅拍
-        </a>
-        <a href>
+          </router-link>
+           <router-link to="/shopping" tag="a">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAABJElEQVRoge2ZQQ6CMBBF/xW8gspZ3LjxmoqnUjDRhAQuoAvKhkhoh87Qhv+Svys/8xIIhAEIIYTkywlABeAbIbXrS5IH4kgOedqO709MySFJslnRvSBZiq7VoQ5FjTvUyfYZLQCUANo/A6SS1s14lEoeADQJiPimcTMHUyYwfGiuEtGUb9eptBLRccnOI6HnY2Q852LR0GusoKhmAUUVoahmAUUVoWisgjP6n1dzXyuVO6uFumjIb823ZIBIcy4u8JXUvpUpGqvg9efMVD6SASLNubjggn5tMCdZu7NarPJ6WQOKmhUYQVGzAiMoalZgBEXNCoygqFmBERSVFlitGMxXEptZMuW4NrxJRDezCAb61f4dQJeAyFQ6N2MhlSSEEEKE/ADf+yDOuunEBgAAAABJRU5ErkJggg=="
             alt
           />游侠集市
-        </a>
+        </router-link>
         <a href>
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAB0klEQVRoge2avUoDQRRGT0yrvYVEY6/iA4gWFrFOK7ZpRcU+jxIQ3yBptNFSfQGJPwjBgBIIMYWQYi02YnayTeK9znUzBy6k+uY7MPs3BAKBQCBJCXgbzp7nLqq0gGg4Lc9dVImcySxBNGv8G9Ed4JHxwj6mB6xqiTYNCI7ONZDXEPUtljansyL6Caxri/pgEeg4PW4R3sIWRAH2U7ocSS5gRRSg7nTpA8tS4ZZEl4AuyT7nUuGWRAFqJPu0pYItiW4CA5J9qlLhVkTzwJ3TpQXMSy1gRfQ4pUtZcgELokXiO+xoj7r0Ir7fgtKmh+BjxbJoRVoS7H29XAA5DdFt4MGA4PeWLWhISuCWzSxBNGuYF10hvvh934Ai4BnY0pCcA64MCI7OvYboiQGxtBFljfjwybeUqmgeuHHCO8SHUz5QEz1MCT+QXGBCVEQLwIcT3JAKnxIV0TMntEt8GOUTFdG2E1qTCv4FKqJVJ3QAbEiFT4mK6ALJ/xtEKBz7T4jaXbecEi567D8hqi8MDSe8T/ze6wNV0SLjjxkrI07FgNSfiOaASwNio9PUEIX43NTS9+iulqgU6tvPCkE0a8yM6As/kk+eu6hSAl6B9+HvQCAQ4Aui8SQVmOx3EQAAAABJRU5ErkJggg=="
@@ -498,7 +498,12 @@ export default {
 #e-content {
   height: 100%;
   padding-bottom: 1.1rem;
-  position: relative;
+  /* position: relative; */
+  overflow:auto;
+}
+.personalCenter{
+  width: 100%;
+  height: 100%;
   overflow:auto;
 }
 .e-IndextHeaer {
@@ -695,7 +700,6 @@ export default {
 
 .e-IndexLocal {
   position: relative;
-  width: 100%;
   height: 5.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -703,7 +707,6 @@ export default {
   -ms-flex-direction: column;
   flex-direction: column;
   padding: 1.8rem 0.3rem 0.28rem;
-  background: #b5fcd0;
 }
 .mIndexLocal__blank {
   position: absolute;
@@ -1050,6 +1053,7 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
+  z-index: 201;
 }
 body {
   position: relative;
