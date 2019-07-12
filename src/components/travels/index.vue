@@ -129,7 +129,7 @@ export default {
   },
   updated() {
     if (!this.swiper) {
-      this.swiper = new Swiper(this.$refs.banner, {
+      this.swiper = new Swiper(this.$refs.t_banner, {
         loop: true,
         scrollbar: {
           el: ".swiper-scrollbar"

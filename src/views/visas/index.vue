@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div> -->
     <div class="mVisaIndex">
       <div class="mVisaSearch">
         <div class="SearchLeft">
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 <script>
 import {getVisaIndex} from  "api/travel.js";
@@ -85,7 +85,11 @@ export default {
 .icon-arrowLeft {
   font-size: 0.3rem;
 }
-
+.mVisaIndex{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
 .mVisaSearch {
   display: flex;
   align-items: center;
@@ -118,6 +122,7 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .mVisaIndex__underHead {
   height: 0.71rem;
   line-height: 0.71rem;
