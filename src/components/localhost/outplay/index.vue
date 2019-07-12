@@ -1,5 +1,6 @@
 <template>
     <!-- 出境玩乐 -->
+    
         <div class="v-around-titleall v-around-main">
             <h2>{{block_name}}</h2>
             <ul class="v-around-listall v-around-main-list">
@@ -32,35 +33,41 @@
 </template>
 
 <script>
+import {getlocalSport,getlocalSportEare,getlocalSportHot} from "api/localhost";
 export default {
+    
     name:"outplay",
-    props:{
-        theme_tag:{
-            type:Array,
-            default:[],
-            required:true
-        },
-        theme_lines:{
-            type:Array,
-            default:[],
-            required:true
-        },
-
-        block_name:{
-            type:String,
-            default:'',
-            required:true
-        }
-    },
     data(){
 
         return{
-            status:''
+            status:0,
+            theme_tag:[],
+            theme_lines:[],
+            block_name:"",
         }
     },
+   async  created(){
+        let sportPoint = await getlocalSport();
+        this.theme_tag = sportPoint.data.en_lines.lines.theme_tag;   //境外玩乐小标题
+        this.block_name = sportPoint.data.en_lines.block.block_name;  //大标题
+        
+        // 请求热门
+        let sportHot = await getlocalSportHot(this.theme_tag[0].wanle_sign);
+        this.theme_lines = sportHot.data.theme_lines;
+        
+    },
     methods:{
-        handleClick(index){
+        async handleClick(index){
             this.status = index;
+             if(index==0){
+              let sportHot = await getlocalSportHot(this.theme_tag[0].wanle_sign);
+              this.theme_lines = sportHot.data.theme_lines;
+          }else{
+
+            // 请求各地区的活动
+            let SportEare = await getlocalSportEare(this.theme_tag[this.status].id);
+            this.theme_lines = SportEare.data.theme_lines; //境外玩乐
+          }
         }
     }
 }

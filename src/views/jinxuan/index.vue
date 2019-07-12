@@ -32,9 +32,9 @@
         </div>
 
     </div>
-    <div class="otherrecommend">
-            <a href="#"
-            class="mUserCenterRecommend__line" v-for="(item,index) in jinxuanList2" :key="index">
+      <loading1  v-if ="loadingFlag"/>
+    <div class="otherrecommend" v-if ="!loadingFlag">
+  <a href="#" class="mUserCenterRecommend__line" v-for="(item,index) in jinxuanList2" :key="index">
             <div class="line__pic">
                 <img :src="item.image" alt="">
                 <div class="line__type">{{item.jihedi}}</div>
@@ -57,13 +57,18 @@ import {getTravelYoulun} from "api/travel.js"
 export default {
     name:"jinxuan",
    async created(){
-       console.log(getTravelYoulun());
-       
+       console.log(getTravelYoulun());      
     let data = await getjinxuan();
      console.log(data.data.data[1].data.count);
      console.log(data.data.data[2].data.count);
      this.jinxuanList1 =data.data.data[1].data.count;
      this.jinxuanList2 =data.data.data[2].data.count;
+     if(data){
+      this.loadingFlag = false
+    }else{
+      this.loadingFlag = true
+    }
+    this.travelList1 = data.data.lines.data;
 
          
     },
@@ -71,6 +76,7 @@ export default {
         return{
             jinxuanList1:[],
             jinxuanList2:[],
+            loadingFlag:true
             
         }
     }

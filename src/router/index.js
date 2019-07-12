@@ -3,6 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import home from "./home";
+import city from "./city";
 import order from "./order"
 import youlun from "./youlun"
 import personalCenter from "./personalCenter";
@@ -19,12 +20,14 @@ import travels from "./travels";
 import theme from "./theme";
 import shopping from "./shopping";
 
+
 export default new Router({
   routes: [
     {
       path:"/",
       redirect:"/home"
     },
+    city,
     home,
     order,
     personalCenter,
