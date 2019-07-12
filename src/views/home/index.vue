@@ -451,13 +451,13 @@ export default {
         homeIndexNav1:[
         "",
         "",
-        "/#/around",
-        "/#/localhost",
-        "/#/competition",
+        "/youxiake/#/around",
+        "/youxiake/#/localhost",
+        "/youxiake/#/competition",
         "",
         "",
         "",
-        "/#/theme",
+        "/youxiake/#/theme",
         ""
       ],
 

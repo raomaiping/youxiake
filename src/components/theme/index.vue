@@ -108,6 +108,7 @@ swiper-container {
   border-top: 0.2rem solid #eee;
   height: 4.22rem;
 }
+
 .list-img {
   width: 100%;
   height: 1.6rem;
@@ -118,5 +119,8 @@ swiper-container {
 .list-img > img {
   width: 3.45rem;
   height: 1.3rem;
+}
+.list-img>li{
+  width: 48%;
 }
 </style>

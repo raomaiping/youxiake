@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+    publicPath:"youxiake",
     devServer:{
         open:true,
         proxy:{
@@ -35,14 +36,11 @@ module.exports = {
                     "^/lai":""
                 }
             },
-            "/web":{
+            "/special_getBkdataAjax":{
                 target:"http://www.youxiake.com",
                 changOrigin:true,
-
                 ws: false, 
-                pathRewrite:{
-                    "^/web":""
-                }
+               
             },
             "/movie":{
                 target:"http://39.97.33.178",
