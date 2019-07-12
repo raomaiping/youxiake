@@ -1,12 +1,13 @@
 <template>
     <div id="v-shopping">
+
         <!-- 头部 -->
         <Header :title="title"/>
 
         <!-- 轮播图 -->
         
             <Swiper :slide_show="slide_show"/>
-       
+            <Loading v-if="loaflag" />
         <!-- 小标题 -->
         <!-- <div class="v-shopping-goods-title">
             <i></i>
@@ -83,8 +84,6 @@
                 </div>
             </div>
         </div>   
-        <!-- :src="JSON.parse(SecKilllist[0].img_json)[0]" -->
-        <!-- :src="JSON.parse(goods.img_json)[0]" -->
     </div>
 </template>
 <script>
@@ -92,21 +91,21 @@ import Header from "components/around/header";
 import Swiper from "components/shopping/swiper";
 
 import {getShopping} from "api/shopping";
+import { loadavg } from 'os';
 
 export default {
     name:"shopping",
     components:{
         Header,
-        Swiper
+        Swiper,
+        loaflag:true
     },
     async created(){
         let data = await getShopping();
         this.goodslist = data.taglist;  //商品
-        console.log(this.goodslist);
         this.SecKilllist = data.SecKilllist;  //限时秒杀
         this.recomlist = data.recomlist; //
         this.slide_show = data.banners
-        console.log(data);
     },
     data(){
         return {

@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper-container v-localhost-autoplay" ref="banner_">
+    <div class="swiper-container v-localhost-autoplay" ref="v_banner">
         <div class="swiper-wrapper">
             <div class="swiper-slide slide_show" v-for="(item,index) in slide_show" :key="index">
                <a href="">
@@ -31,18 +31,20 @@ export default {
         }
     },
     mounted(){
-       new Swiper(this.$refs.banner_,{
-            loop:true,
-            
-            autoplay:{
-                delay:3000,
-                stopOnLastSlide:false,
-                disableOnInteraction: false
-            },
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
+            new Swiper(this.$refs.v_banner,{
+                loop:true,
+                
+                autoplay:{
+                    delay:3000,
+                    stopOnLastSlide:false,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
+        
+       
     }
     ,
    
