@@ -9,7 +9,7 @@ body,html{
 }
 h1 ,h2, h3, h4, h5, h6, strong b {
 	font-weight:normal;
-
+	
 }
 i ,em{
 	font-style:normal;
@@ -32,6 +32,11 @@ li{ list-style:none;}
 }
 input{outline:none;
 	}
+img {
+	width: 100%;
+	display: block;
+	border: 0;
+}
 /* 网页制作开始 */
 
 
